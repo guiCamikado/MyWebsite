@@ -1,5 +1,8 @@
 import Sidebar from "../organisms/Sidebar";
 import TopMenu from "../organisms/TopMenu";
+import DivParalelo from "../temp/nightButtonTest";
+import FormDataManager from "../../utils/FormDataManager";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     /** Docs
@@ -11,12 +14,30 @@ export default function Home() {
      *      2. Redirecionar caso usuário esteja conectado e link não ir a lugar nenhum 
      */
 
+    const [data, setData] = useState(JSON.parse(localStorage.getItem("GuisProfile")) || "")
+
+    const mockedData = {
+        target: {
+            name: "teste",
+            value: "valorTest"
+        }
+    }
+    // Obtem atualizações com valor targe{name, value} e envia para localStorage
+    const handleEventInput = async (e) => {
+        await FormDataManager.handleEventInput(e, data, setData).then((result) => {
+            localStorage.setItem("GuisProfile", JSON.stringify(result))
+        })
+    }
+
     return (
         <>
-            <div className="bg-[#201F20]">
+            <div className={data.darkMode ? "bg-[#201F20]" : "bg-[#FFFFFF"}>
                 {/* <TopMenu /> WIP não está legal */}
-                <Sidebar />
+                <Sidebar data={data} handleEventInput={handleEventInput}/>
+                <DivParalelo />
             </div>
+
+            <button onClick={() => { handleEventInput(mockedData) }}>BOTAO</button>
         </>
     )
 }
