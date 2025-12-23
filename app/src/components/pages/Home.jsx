@@ -8,6 +8,8 @@ import CardHolder from "../atoms/CardHolder";
 // Clusters
 import ClusterFerramentas from "../molecules/SkillClusters/ClusterFerramentas";
 import ClusterLinguagens from "../molecules/SkillClusters/ClusterLinguagens";
+import ClusterFrameworks from "../molecules/SkillClusters/ClusterFrameworks";
+import ClusterOutros from "../molecules/SkillClusters/ClusterOutros";
 /** Docs
  * @startDate 21/12/25
  * @lastUpdate 21/12/25 
@@ -34,10 +36,12 @@ export default function Home() {
                 <Sidebar data={data} handleEventInput={handleEventInput} element={
 
                     // Isso deverá virar um organism
-                    <CardHolder darkMode={data.darkMode} title={"Habilidades"} element={
+                    <CardHolder darkMode={data.darkMode} title={""} element={
                         <>
                             <ClusterLinguagens darkMode={data.darkMode} />
                             <ClusterFerramentas darkMode={data.darkMode} />
+                            <ClusterFrameworks darkMode={data.darkMode}/>
+                            <ClusterOutros darkMode={data.darkMode}/>
                         </>
                     } />
                 } />

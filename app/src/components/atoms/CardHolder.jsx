@@ -1,5 +1,4 @@
 import { useEffect } from "react"
-import blender_icon from "../../assets/images/logos/blender_icon_1024x1024.png"
 import SkillDescriptionCard from "../atoms/SkillDescriptionCard"
 /**
  * @startDate 22/12/25
@@ -13,21 +12,23 @@ import SkillDescriptionCard from "../atoms/SkillDescriptionCard"
 export default function CardHolder({ title, element, darkMode }) {
     return (
         <>
-            <div className={darkMode ? "text-[#FFE3C8] bg-[#201F20]" : "text-[#403E40] bg-[#EEECEE]"}>
+            <div className={darkMode ? "text-[#FFE3C8] bg-[#201F20]" : "text-[#403E40] bg-[#E2E0E2]"}>
 
-                <div className={`text-4xl pl-5 pt-3 pb-1`}>
-                    {title ? title : <div>Habilidades</div>}
+                <div className={`text-4xl pl-5 pt-3 pb-1 pr-5`}>
+                    {title ? title : ""}
                 </div>
 
                 <div className={`
-                pl-5 pb-1 pt-1
+                pl-6 pb-1 pt-1 pr-6
                 grid
                 grid-cols-1
                 gap-2
                 sm:grid-cols-2
                 lg:grid-cols-3
                 xl:grid-cols-4
-                h-full content-start ${darkMode ? "bg-[#201F20] text-[#FFE3C8]" : "text-[#403E40] bg-[#EEECEE]" }`}>
+                content-start ${darkMode 
+                ? "bg-[#201F20] text-[#FFE3C8]" 
+                : "text-[#403E40] bg-[#E2E0E2]" }`}>
                     {element ? element : "Definir elemento Ver SkillDescriptionCard.jsx"}
                 </div>
             </div>

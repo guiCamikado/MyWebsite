@@ -41,27 +41,35 @@ function Sidebar({ data, handleEventInput, element }) {
 
     return (
         <>
-            <div className="flex">
+            <div className="flex h-screen overflow-hidden">
 
                 <aside
                     className={darkMode
                         ? `min-h-screen sticky top-0 bg-black text-[#FFE3C8] transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
-                        : `min-h-screen sticky top-0 bg-[#E2E0E2] text-black transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
+                        : `min-h-screen sticky top-0 bg-[#F4F3F4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
                     }
                 >
 
                     {/* Header */}
                     <div className={`flex justify-between p-4 transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`}>
-                        {/* Grupo de botões à direita */}
+                        {/* Grupo de botões*/}
                         <div className="flex items-center gap-3">
-                            {isActive && (<>
+                            {isActive ? (<>
                                 <UserCog size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
                                 <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
                                 <Home size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
                                 <Settings size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
-                            </>
-                            )}
-                            <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
+                                <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
+                            </>) : (<>
+                                <div className="grid grid-cols-1 gap-4">
+                                    <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
+                                    <UserCog size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
+                                    <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
+                                    <Home size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
+                                    <Settings size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
+                                </div>
+                            </>)}
+
                         </div>
                     </div>
 
@@ -93,7 +101,7 @@ function Sidebar({ data, handleEventInput, element }) {
                     </>
                     )}
                 </aside>
-                <div>
+                <div className="flex-1 overflow-y-auto">
                     {element}
                 </div>
             </div>

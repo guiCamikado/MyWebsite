@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import blender_icon from "../../assets/images/logos/blender_icon_1024x1024.png"
+// import blender_icon from "../../assets/images/logos/blender_icon_1024x1024.png"
 import SkillDescriptionCard from "../atoms/SkillDescriptionCard"
 /**
  * @startDate 22/12/25
@@ -25,7 +25,7 @@ export default function SolutionForManyCardsInOneTab({ darkMode, itensData, titl
 
     const skills = [
         itensData ?? {
-            icon: blender_icon,
+            // icon: blender_icon,
             icon_alt_text: "Blender Icon",
             title: "Blender 3D",
             subtitle: "The Free and Open Source 3D Creation Suite",
