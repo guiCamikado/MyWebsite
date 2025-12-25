@@ -13,11 +13,13 @@ import ClusterOutros from "../molecules/SkillClusters/ClusterOutros";
 
 export default function SkillsSidebar({ darkMode }) {
     return (
-        <CardHolder darkMode={darkMode}>
-            <ClusterLinguagens darkMode={darkMode} />
-            <ClusterFerramentas darkMode={darkMode} />
-            <ClusterFrameworks darkMode={darkMode} />
-            <ClusterOutros darkMode={darkMode} />
-        </CardHolder>
+        <CardHolder darkMode={darkMode} element={
+            <>
+                <ClusterLinguagens darkMode={darkMode} />
+                <ClusterFerramentas darkMode={darkMode} />
+                <ClusterFrameworks darkMode={darkMode} />
+                <ClusterOutros darkMode={darkMode} />
+            </>
+        } />
     );
 }

@@ -6,10 +6,7 @@ import Sidebar from "../organisms/Sidebar";
 import CardHolder from "../atoms/CardHolder";
 
 // Clusters
-import ClusterFerramentas from "../molecules/SkillClusters/ClusterFerramentas";
-import ClusterLinguagens from "../molecules/SkillClusters/ClusterLinguagens";
-import ClusterFrameworks from "../molecules/SkillClusters/ClusterFrameworks";
-import ClusterOutros from "../molecules/SkillClusters/ClusterOutros";
+import SkillsSidebar from "../organisms/SkillsSidebar";
 /** Docs
  * @startDate 21/12/25
  * @lastUpdate 21/12/25 
@@ -34,16 +31,10 @@ export default function Home() {
             <div className={data.darkMode ? "bg-[#201F20]" : "bg-[#EEECEE]"}>
                 {/* <TopMenu /> WIP não está legal */}
                 <Sidebar data={data} handleEventInput={handleEventInput} element={
-
-                    // Isso deverá virar um organism
-                    <CardHolder darkMode={data.darkMode} title={""} element={
-                        <>
-                            <ClusterLinguagens darkMode={data.darkMode} />
-                            <ClusterFerramentas darkMode={data.darkMode} />
-                            <ClusterFrameworks darkMode={data.darkMode}/>
-                            <ClusterOutros darkMode={data.darkMode}/>
-                        </>
-                    } />
+                    <>
+                        {/* WIP retirar o skills logo depois */}
+                        <SkillsSidebar darkMode={data.darkMode} />
+                    </>
                 } />
             </div>
         </>
