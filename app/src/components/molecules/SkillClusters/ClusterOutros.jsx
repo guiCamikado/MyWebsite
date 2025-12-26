@@ -3,7 +3,7 @@ import unity_icon from "../../../assets/images/logos/toolIcons/unity_icon.svg"
 import office365_icon from "../../../assets/images/logos/toolIcons/office365_icon.png"
 import wireshark_icon from "../../../assets/images/logos/toolIcons/wireshark_icon.png"
 import sleuthkit_icon from "../../../assets/images/logos/toolIcons/sleuthkit_icon.png"
-import github_icon from "../../../assets/images/logos/toolIcons/github_icon.png"
+import markdown_icon from "../../../assets/images/logos/toolIcons/markdown_icon.svg"
 
 import SkillDescriptionCard from "../../atoms/SkillDescriptionCard"
 import CardHolderChild from "../../atoms/CardHolderChild"
@@ -48,7 +48,7 @@ export default function ClusterOutros({ darkMode }) {
             subtitle: "Linguagem de Marcação",
             text: "Linguagem de marcação extensível utilizada para estruturar, armazenar e transportar dados entre sistemas."
         }, {
-            icon: "https://cdn-icons-png.flaticon.com/512/5968/5968672.png",
+            icon: markdown_icon,
             icon_alt_text: "Markdown",
             title: "Markdown",
             subtitle: "Linguagem de Marcação Leve",

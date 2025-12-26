@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 
 import FormDataManager from "../../utils/FormDataManager";
 
@@ -7,6 +9,8 @@ import CardHolder from "../atoms/CardHolder";
 
 // Clusters
 import SkillsSidebar from "../organisms/SkillsSidebar";
+import PageProjects from "../temp/PageProjects";
+import ProjectsSidebar from "../organisms/ProjectsSidebar";
 /** Docs
  * @startDate 21/12/25
  * @lastUpdate 21/12/25 
@@ -17,7 +21,18 @@ import SkillsSidebar from "../organisms/SkillsSidebar";
  */
 
 export default function Home() {
+    const [renderedPage, setRenderedPage] = useState("")
     const [data, setData] = useState(JSON.parse(localStorage.getItem("GuisProfile")) || "")
+
+    // Controls page rendering
+    const onSidebarClick = (e) => {
+
+
+    }
+    useEffect(() => {
+        const page = new URLSearchParams(window.location.search)
+        setRenderedPage(page.get("page"))
+    }, [window.location.search])
 
     // Obtem atualizações com valor targe{name, value} e envia para localStorage
     const handleEventInput = async (e) => {
@@ -30,10 +45,11 @@ export default function Home() {
         <>
             <div className={data.darkMode ? "bg-[#201F20]" : "bg-[#EEECEE]"}>
                 {/* <TopMenu /> WIP não está legal */}
-                <Sidebar data={data} handleEventInput={handleEventInput} element={
+                <Sidebar data={data} handleEventInput={(e) => { handleEventInput(e), onSidebarClick(e) }} element={
                     <>
-                        {/* WIP retirar o skills logo depois */}
-                        <SkillsSidebar darkMode={data.darkMode} />
+                        {renderedPage === "skills" ? <SkillsSidebar darkMode={data.darkMode} /> : ""}
+                        {/* {renderedPage === "projects" ? <PageProjects darkMode={data.darkMode} /> : ""} */}
+                        {renderedPage === "projects" ? <ProjectsSidebar darkMode={data.darkMode} /> : ""}
                     </>
                 } />
             </div>

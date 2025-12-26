@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom";
 import { Menu, Home, Settings, SunMoon, UserCog } from "lucide-react"
 import SidebarClickOption from "../atoms/SidebarClickOption"
 import SideBarCluster from "../molecules/SidebarCluster"
@@ -10,6 +11,7 @@ import SideBarCluster from "../molecules/SidebarCluster"
 *   1. Menu de navegação intuitiva expansivel com botões para futuros widgets de customização
 */
 function Sidebar({ data, handleEventInput, element }) {
+    // WIP fazer com que a sidebar ocupe toda a tela se ativa && em mobile 
     const [isActive, setIsActive] = useState(data.sideMenuOpen || "")
     const [darkMode, setDarkMode] = useState(data.darkMode || "")
 
@@ -34,6 +36,8 @@ function Sidebar({ data, handleEventInput, element }) {
         }
         handleEventInput(isMenuOpenData)
     }, [isActive])
+
+
 
     const ButtonStyle = darkMode
         ? "rounded-xl text-[#FFE3C8] bg-[#807C8020] p-1 cursor-pointer transition-all duration-200 hover:text-[#DD01E6] hover:scale-105"
@@ -89,11 +93,11 @@ function Sidebar({ data, handleEventInput, element }) {
                         >
                             <SideBarCluster darkMode={darkMode} ClusterTitle="Perfil" ClusterData={
                                 [
-                                    { text: "Sobre", link: "#" },
-                                    { text: "Experiência", link: "#" },
-                                    { text: "Formação Acadêmica", link: "#" },
-                                    { text: "Habilidades", link: "#" },
-                                    { text: "Projetos", link: "#" },
+                                    { text: "Sobre", link: "?page=about" },
+                                    { text: "Experiência", link: "?page=experience" },
+                                    { text: "Formação Acadêmica", link: "?page=formation" },
+                                    { text: "Habilidades", link: "?page=skills" },
+                                    { text: "Projetos", link: "?page=projects" },
                                 ]
                             } />
 
@@ -101,7 +105,7 @@ function Sidebar({ data, handleEventInput, element }) {
                     </>
                     )}
                 </aside>
-                <div className="flex-1 overflow-y-auto">
+                <div className="flex overflow-y-auto">
                     {element}
                 </div>
             </div>

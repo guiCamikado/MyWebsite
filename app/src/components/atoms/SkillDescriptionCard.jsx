@@ -27,13 +27,13 @@ export default function SkillDescriptionCard({ darkMode, itensData }) {
     })
 
     return (
-        <div className="w-full h-full flex justify-center pt-4 px-10s mb-5">
+        <div className="justify-center pt-4 mb-5">
             <div className={`${darkMode
                 ? "text-[#FFE3C8] bg-[#201F20] border-2 border-[#201F20] hover:border-[#DD01E6]"
                 : "text-[#403E40] bg-[#e2e0e2] border-2 border-[#EEECEE] hover:border-[#FFFF20]"
                 } w-full max-w-md min-w-[33%] min-h-[20%] rounded-xl p-2 origin-top-left hover:rotate-1 hover:scale-105 transition-transform duration-600 ease-in-out`}>
                 <div className="flex gap-4 flex-wrap sm:flex-nowrap">
-                        <img src={itens.icon} alt="ManyIcons" className="size-16 shrink-0" />
+                    <img src={itens.icon} alt="ManyIcons" className="size-16 shrink-0" />
 
                     <b className="text-3xl">
                         <div>
@@ -41,12 +41,14 @@ export default function SkillDescriptionCard({ darkMode, itensData }) {
                             <p className="text-[35%]">{itens.subtitle}</p>
                         </div>
 
-                        <div className="pt-4">
-                            <p className="text-[50%]">{itens.text}</p>
-                        </div>
+
                     </b>
                 </div>
+                <div className="pt-4">
+                    <p className="text-[100%]">{itens.text}</p>
+                </div>
             </div>
+
         </div>
     )
 }
