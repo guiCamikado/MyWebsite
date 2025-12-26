@@ -10,11 +10,13 @@ import ioturn_3 from "../../assets/images/photos/ioturn/ioturn_3.png"
 // Kubernets
 // MQTT
 // MUI
-import java_icon from "../../assets/images/Logos/languageIcons/java_icon.svg"
-import javaScript_icon from "../../assets/images/Logos/languageIcons/javascript_icon.png"
-import python_icon from "../../assets/images/Logos/languageIcons/python_icon.svg"
-import Csharp_icon from "../../assets/images/Logos/languageIcons/Csharp_logo.svg.png"
+import mui_icon from "../../assets/images/Logos/frameworkIcons/mui_logo.png"
+import react_icon from "../../assets/images/Logos/frameworkIcons/react_icon.svg"
+import tailwind_logo from "../../assets/images/Logos/frameworkIcons/tailwind_logo.svg"
+import javascript_icon from "../../assets/images/Logos/languageIcons/javascript_icon.png"
 import sql_icon from "../../assets/images/Logos/languageIcons/sql_icon.png"
+import github_icon from "../../assets/images/Logos/ToolIcons/github_icon.png"
+import markdown_icon from "../../assets/images/Logos/ToolIcons/markdown_icon.svg"
 
 import ImageSlider from "../molecules/ImageSlider"
 import CurrentStatus from "../atoms/CurrentStatus"
@@ -30,7 +32,9 @@ import DescriptionColumn from "../molecules/DescriptionColumn"
  */
 export default function ProjectsSidebar({ darkMode, content }) {
 
-    const data = content ?? [{
+    
+    const data = content ?? [
+        {
         title: "IoTurn",
         dataInicio: "01/01/2025",
         dataFim: "12/12/2025",
@@ -55,10 +59,29 @@ export default function ProjectsSidebar({ darkMode, content }) {
                 </p>
             </>
         ),
-        technologies: [java_icon, javaScript_icon, python_icon, Csharp_icon, sql_icon],
+        technologies: [react_icon, mui_icon, javascript_icon, sql_icon, github_icon, markdown_icon],
         status: "concluido",
         link: "https://github.com/SENAISP-Unid601-Projetos/IoTurn"
-    },]
+    }, {
+        title: "this.Site",
+        dataInicio: "21/12/2025",
+        dataFim: "Now",
+        images: [ioturn_1],
+        description: (
+            <>
+                <p>
+                    Projeto visando a visualizações de recrutadores para demonstrar minhas habilidades 
+                </p>
+                <br />
+                <p>
+                    Esse site em questão é feito em React + Tailwind com Vite de build-in-tool, nele se tem demonstrado de forma prática o uso de props, useStates, useEffect, CallBacks (ou handlers). Além da arquitetura Atomic.
+                </p>
+            </>
+        ),
+        technologies: [react_icon, tailwind_logo, javascript_icon, github_icon],
+        status: "concluido",
+        link: "https://github.com/guiCamikado/MyWebsite.git"
+    }]
 
     return (
         <div className="grid grid-cols-2 ml-4 h-[90%] w-auto justify-center">
@@ -82,12 +105,10 @@ export default function ProjectsSidebar({ darkMode, content }) {
                         </div>
 
                         <ImageSlider switchInterval={5000} imageArray={item.images} />
-
                         <DescriptionColumn
                             description={item.description}
                             darkMode={darkMode}
                         />
-
                         <div className="flex items-center gap-4 mt-2">
                             <CurrentStatus status={item.status} />
 
@@ -103,7 +124,6 @@ export default function ProjectsSidebar({ darkMode, content }) {
                             </a>
                         </div>
                     </div>
-
                     <TecnologiesColumn data={item.technologies} />
                 </div>
             ))}

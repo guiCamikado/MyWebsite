@@ -48,7 +48,6 @@ export default function Home() {
                 <Sidebar data={data} handleEventInput={(e) => { handleEventInput(e), onSidebarClick(e) }} element={
                     <>
                         {renderedPage === "skills" ? <SkillsSidebar darkMode={data.darkMode} /> : ""}
-                        {/* {renderedPage === "projects" ? <PageProjects darkMode={data.darkMode} /> : ""} */}
                         {renderedPage === "projects" ? <ProjectsSidebar darkMode={data.darkMode} /> : ""}
                     </>
                 } />
