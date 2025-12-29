@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-import testImage from "../../assets/images/photos/testImage.jpg"
-import testImage2 from "../../assets/images/photos/testImage2.jpg"
 
 // Temp
 import java_icon from "../../assets/images/Logos/languageIcons/java_icon.svg"
@@ -55,7 +53,7 @@ export default function PageProjects({ darkMode, content }) {
         title: "Undefined",
         dataInicio: "dd/mm/yyyy",
         dataFim: "dd/mm/yyyy",
-        images: [testImage, testImage2],
+        images: [],
         description: <>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae ut commodi magnam iure, illo necessitatibus fugit sequi autem aut doloremque maiores tempore consequatur earum voluptate illum ab sint repellat eos.</p>
         </>,

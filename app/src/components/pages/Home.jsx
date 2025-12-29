@@ -11,6 +11,10 @@ import CardHolder from "../atoms/CardHolder";
 import SkillsSidebar from "../organisms/SkillsSidebar";
 import PageProjects from "../temp/PageProjects";
 import ProjectsSidebar from "../organisms/ProjectsSidebar";
+import SobreSidebar from "../organisms/SobreSidebar";
+import ExperienceCard from "../atoms/ExperienceCard";
+import EducationCard from "../atoms/EducationCard";
+
 /** Docs
  * @startDate 21/12/25
  * @lastUpdate 21/12/25 
@@ -49,6 +53,10 @@ export default function Home() {
                     <>
                         {renderedPage === "skills" ? <SkillsSidebar darkMode={data.darkMode} /> : ""}
                         {renderedPage === "projects" ? <ProjectsSidebar darkMode={data.darkMode} /> : ""}
+                        {renderedPage === "about" ? <SobreSidebar darkMode={data.darkMode} /> : ""}
+                        {renderedPage === "experience" ? <ExperienceCard darkMode={data.darkMode} /> : ""}
+                        {renderedPage === "formation" ? <EducationCard darkMode={data.darkMode} /> : ""}
+
                     </>
                 } />
             </div>
