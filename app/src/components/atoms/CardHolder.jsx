@@ -12,7 +12,7 @@ import SkillDescriptionCard from "../atoms/SkillDescriptionCard"
 export default function CardHolder({ title, element, darkMode }) {
     return (
         <>
-            <div className={darkMode ? "text-[#FFE3C8] bg-[#201F20]" : "text-[#403E40] bg-[#E2E0E2]"}>
+            <div className={`${darkMode ? "text-[#FFE3C8] bg-[#201F20]" : "text-[#000000] bg-[#DEDCDE]"}`}>
 
                 <div className={`text-4xl pl-5 pt-3 pb-1 pr-5`}>
                     {title ? title : ""}
@@ -28,7 +28,7 @@ export default function CardHolder({ title, element, darkMode }) {
                 xl:grid-cols-4
                 content-start ${darkMode 
                 ? "bg-[#201F20] text-[#FFE3C8]" 
-                : "text-[#403E40] bg-[#E2E0E2]" }`}>
+                : "text-[#000000] bg-[#DEDCDE]" }`}>
                     {element ? element : "Definir elemento Ver SkillDescriptionCard.jsx"}
                 </div>
             </div>

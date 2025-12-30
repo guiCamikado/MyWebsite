@@ -11,7 +11,7 @@ import ClusterOutros from "../molecules/SkillClusters/ClusterOutros";
  * @returns 
  */
 
-export default function SkillsSidebar({ darkMode }) {
+export default function SkillSidebar({ darkMode }) {
     return (
         <CardHolder darkMode={darkMode} element={
             <>

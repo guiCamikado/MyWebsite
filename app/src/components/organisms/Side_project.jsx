@@ -15,9 +15,13 @@ import mui_icon from "../../assets/images/Logos/frameworkIcons/mui_logo.png"
 import react_icon from "../../assets/images/Logos/frameworkIcons/react_icon.svg"
 import tailwind_logo from "../../assets/images/Logos/frameworkIcons/tailwind_logo.svg"
 import javascript_icon from "../../assets/images/Logos/languageIcons/javascript_icon.png"
+import typescript_icon from "../../assets/images/Logos/languageIcons/typescript-logo-512.svg"
+import C_icon from "../../assets/images/Logos/languageIcons/C_icon.png"
+import docker_icon from "../../assets/images/Logos/languageIcons/docker-mark-blue.svg"
 import sql_icon from "../../assets/images/Logos/languageIcons/sql_icon.png"
 import github_icon from "../../assets/images/Logos/ToolIcons/github_icon.png"
 import markdown_icon from "../../assets/images/Logos/ToolIcons/markdown_icon.svg"
+
 
 import ImageSlider from "../molecules/ImageSlider"
 import CurrentStatus from "../atoms/CurrentStatus"
@@ -31,7 +35,7 @@ import DescriptionColumn from "../molecules/DescriptionColumn"
  * @param {boolean} props.darkMode - Define se o tema escuro está ativo.
  * @param {Object} props.content - Objeto com os dados do projeto title(Str), dataInicio(Str), dataFim(Str), images(Array), description(<>obj<>), technologies(Array), status("concluido, progresso, parado, undefined"), link(String).
  */
-export default function ProjectsSidebar({ darkMode, content }) {
+export default function ProjectSidebar({ darkMode, content }) {
 
 
     const data = content ?? [
@@ -46,7 +50,8 @@ export default function ProjectsSidebar({ darkMode, content }) {
                         Projeto técnico desenvolvido no SENAI São Carlos como trabalho de conclusão de curso.
                         O projeto consistiu na criação de um sistema voltado à integração entre os conceitos
                         da Indústria 3.0 e Indústria 4.0, utilizando sensores acoplados a um torno industrial
-                        e conectados a um microcontrolador ESP32.
+                        e conectados a um microcontrolador ESP32 para realizar a comunicação, monitoramento do funcionamento e
+                        análise de dados em tempo real.
                     </p>
                     <br />
                     <p>
@@ -60,7 +65,7 @@ export default function ProjectsSidebar({ darkMode, content }) {
                     </p>
                 </>
             ),
-            technologies: [react_icon, mui_icon, javascript_icon, sql_icon, github_icon, markdown_icon],
+            technologies: [react_icon, mui_icon, javascript_icon, typescript_icon, C_icon, sql_icon, github_icon, markdown_icon, docker_icon,],
             status: "concluido",
             link: "https://github.com/SENAISP-Unid601-Projetos/IoTurn"
         }, {

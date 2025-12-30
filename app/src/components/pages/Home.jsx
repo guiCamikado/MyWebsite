@@ -8,12 +8,11 @@ import Sidebar from "../organisms/Sidebar";
 import CardHolder from "../atoms/CardHolder";
 
 // Clusters
-import SkillsSidebar from "../organisms/SkillsSidebar";
-import PageProjects from "../temp/PageProjects";
-import ProjectsSidebar from "../organisms/ProjectsSidebar";
-import SobreSidebar from "../organisms/SobreSidebar";
-import ExperienceCard from "../atoms/ExperienceCard";
-import EducationCard from "../atoms/EducationCard";
+import SkillsSidebar from "../organisms/Side_skill";
+import ProjectsSidebar from "../organisms/Side_project";
+import SobreSidebar from "../organisms/Side_about";
+import ExperienceCard from "../organisms/Side_experience";
+import EducationCard from "../organisms/Side_education";
 
 /** Docs
  * @startDate 21/12/25
@@ -25,41 +24,50 @@ import EducationCard from "../atoms/EducationCard";
  */
 
 export default function Home() {
-    const [renderedPage, setRenderedPage] = useState("")
-    const [data, setData] = useState(JSON.parse(localStorage.getItem("GuisProfile")) || "")
+    const [renderedPage, setRenderedPage] = useState("");
+    const [data, setData] = useState(
+        JSON.parse(localStorage.getItem("GuisProfile")) || {}
+    );
 
-    // Controls page rendering
-    const onSidebarClick = (e) => {
-
-
-    }
     useEffect(() => {
-        const page = new URLSearchParams(window.location.search)
-        setRenderedPage(page.get("page"))
-    }, [window.location.search])
+        const page = new URLSearchParams(window.location.search);
+        setRenderedPage(page.get("page"));
+    }, []);
 
-    // Obtem atualizações com valor targe{name, value} e envia para localStorage
+    // 🔥 AQUI É O CORRETO
+    useEffect(() => {
+        const html = document.documentElement;
+
+        if (data.darkMode) {
+            html.classList.add("dark");
+        } else {
+            html.classList.remove("dark");
+        }
+    }, [data.darkMode]);
+
     const handleEventInput = async (e) => {
         await FormDataManager.handleEventInput(e, data, setData).then((result) => {
-            localStorage.setItem("GuisProfile", JSON.stringify(result))
-        })
-    }
+            localStorage.setItem("GuisProfile", JSON.stringify(result));
+        });
+    };
+
+    const renderContent = () => {
+        switch (renderedPage) {
+            case "skills": return <SkillsSidebar darkMode={data.darkMode} />;
+            case "projects": return <ProjectsSidebar darkMode={data.darkMode} />;
+            case "experience": return <ExperienceCard darkMode={data.darkMode} />;
+            case "formation": return <EducationCard darkMode={data.darkMode} />;
+            default: return <SobreSidebar darkMode={data.darkMode} />;
+        }
+    };
 
     return (
-        <>
-            <div className={data.darkMode ? "bg-[#201F20]" : "bg-[#EEECEE]"}>
-                {/* <TopMenu /> WIP não está legal */}
-                <Sidebar data={data} handleEventInput={(e) => { handleEventInput(e), onSidebarClick(e) }} element={
-                    <>
-                        {renderedPage === "skills" ? <SkillsSidebar darkMode={data.darkMode} /> : ""}
-                        {renderedPage === "projects" ? <ProjectsSidebar darkMode={data.darkMode} /> : ""}
-                        {renderedPage === "about" ? <SobreSidebar darkMode={data.darkMode} /> : ""}
-                        {renderedPage === "experience" ? <ExperienceCard darkMode={data.darkMode} /> : ""}
-                        {renderedPage === "formation" ? <EducationCard darkMode={data.darkMode} /> : ""}
-
-                    </>
-                } />
-            </div>
-        </>
-    )
+        <div className={data.darkMode ? "bg-[#201F20]" : "bg-[#EEECEE]"}>
+            <Sidebar
+                data={data}
+                handleEventInput={handleEventInput}
+                element={renderContent()}
+            />
+        </div>
+    );
 }

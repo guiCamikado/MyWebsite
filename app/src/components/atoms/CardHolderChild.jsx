@@ -25,7 +25,7 @@ export default function CardHolderChild({ title, element, darkMode }) {
                 <div className={`
                 pl-5 pb-1 pt-1
                 gap-2
-                content-start ${darkMode ? "bg-[#201F20] text-[#FFE3C8]" : "text-[#403E40] bg-[#E2E0E2]"}`}>
+                content-start ${darkMode ? "bg-[#201F20] text-[#FFE3C8]" : "text-[#000000] bg-[#E2E0E2]"}`}>
                     {element ? element : "Definir elemento Ver SkillDescriptionCard.jsx"}
                 </div>
             </div>

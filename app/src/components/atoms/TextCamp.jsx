@@ -6,9 +6,15 @@ export default function TextCamp({ darkMode, title, text }) {
                 : "text-[#403E40] bg-[#e2e0e2] border-2 border-[#EEECEE] hover:border-[#FFFF20]"
                 } hover:scale-102 rounded-xl p-2 origin-center transition-transform duration-600 ease-in-out`}>
                 <div>
-                    <h1 className="text-4xl p-2 justify-center">
-                        {title}
-                    </h1>
+                    {title
+                        ? <>
+                            <h1 className="text-4xl p-2 justify-center">
+                                {title}
+                            </h1>
+                        </>
+                        :
+                        ""}
+
                 </div>
 
                 <div className="indent-4">

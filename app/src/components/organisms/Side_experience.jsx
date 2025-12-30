@@ -1,4 +1,5 @@
-import company_logo from "../../assets/images/Logos/Company/tecumseh-logo.png"
+import tecumseh_logo_white from "../../assets/images/Logos/Company/tecumseh_logo_white.png"
+import tecumseh_logo_black from "../../assets/images/Logos/Company/tecumseh_logo_black.png"
 
 /**
  * 
@@ -21,7 +22,7 @@ export default function ExperienceCard({ darkMode, itensData }) {
 
     // Exemplo padrão
     const itens = itensData ? itensData : {
-        logo: company_logo,
+        logo: darkMode ? tecumseh_logo_white : tecumseh_logo_black,
         logo_alt_text: "Company Logo",
         company: "Tecumseh do Brasil LTDA",
         role: "Desenvolvedor Fullstack Jovem Aprendiz",
@@ -29,10 +30,19 @@ export default function ExperienceCard({ darkMode, itensData }) {
         endDate: "Dez 2025",
         description:
             <>
-                Trabalhei como desenvolvedor em uma plataforma ASP Classic criando e realizando manutenções no código legado
-                da empresa. Durante esse período realizei o desenvolvimento de páginas para o gerenciamento do laboratório que
-                realizava testes em protótipos de compressores envolvendo um sistema de gerenciamento de insumos, controle de
-                ensaios, indicadores de desempenho de diversas áreas do setor, além da criação de backlogs e gráficos.
+                <p className="indent-4 mt-4">
+                    Como meu primeiro emprego de carteira assinada trabalhei como desenvolvedor em uma plataforma ASP Classic criando
+                    e realizando manutenções no código legado da empresa.
+                    Durante esse período realizei o desenvolvimento de páginas para o gerenciamento do laboratório de análise e desenvolvimento que
+                    realizava testes em protótipos de compressores e maquinário de refrigeração e afins envolvendo um sistema de gerenciamento de insumos, controle de ensaios, indicadores de desempenho de diversas áreas do setor, além da criação de backlogs, gráficos de desempenho e resolução de eventuais bugs que apareciam com certa frequência maior do que deveriam.
+                </p>
+                <p className="indent-2 mt-4">
+                    Guardo essa oportunidade com muito carinho, pois conheci pessoas incríveis dentro da empresa.
+                    Além disso, aprendi muito sobre desenvolvimento, com ênfase na melhoria da minha capacidade de
+                    isolar problemas, já que o código era legado e, muitas vezes, difícil de compreender.
+                    Também desenvolvi habilidades de trabalho em equipe, criação de software voltado ao usuário
+                    e aprimoramento da minha lógica de programação.
+                </p>
             </>
     }
 

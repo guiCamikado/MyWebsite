@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
-import { useSearchParams } from "react-router-dom";
-import { Menu, Home, Settings, SunMoon, UserCog } from "lucide-react"
-import SidebarClickOption from "../atoms/SidebarClickOption"
+import { Menu, Home, SunMoon } from "lucide-react"
 import SideBarCluster from "../molecules/SidebarCluster"
 /** Docs
 * @startDate 21/12/25
@@ -40,7 +38,7 @@ function Sidebar({ data, handleEventInput, element }) {
 
 
     const ButtonStyle = darkMode
-        ? "rounded-xl text-[#FFE3C8] bg-[#807C8020] p-1 cursor-pointer transition-all duration-200 hover:text-[#DD01E6] hover:scale-105"
+        ? "rounded-xl text-[#FFE3C8] bg-[#00000044] p-1 cursor-pointer transition-all duration-200 hover:text-[#DD01E6] hover:scale-105"
         : "rounded-xl bg-black/5 p-1 cursor-pointer transition-all duration-300 hover:text-[#FFEF20] hover:bg-black/10 hover:scale-105 text-[#000000]";
 
     return (
@@ -50,7 +48,7 @@ function Sidebar({ data, handleEventInput, element }) {
                 <aside
                     className={darkMode
                         ? `min-h-screen sticky top-0 bg-black text-[#FFE3C8] transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
-                        : `min-h-screen sticky top-0 bg-[#F4F3F4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
+                        : `min-h-screen sticky top-0 bg-[#D4D3D4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
                     }
                 >
 
@@ -59,18 +57,18 @@ function Sidebar({ data, handleEventInput, element }) {
                         {/* Grupo de botões*/}
                         <div className="flex items-center gap-3">
                             {isActive ? (<>
-                                <UserCog size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
                                 <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                <Home size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
-                                <Settings size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
-                                <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
+                                <Home size={32} onClick={() => window.location.href = "/?page=about"} className={`${ButtonStyle}`} />
+
+                                <div className="absolute right-4 top-4">
+                                    <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
+                                </div>
+
                             </>) : (<>
                                 <div className="grid grid-cols-1 gap-4">
                                     <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
-                                    <UserCog size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
                                     <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                    <Home size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
-                                    <Settings size={32} onClick={() => navigate("/")} className={`${ButtonStyle}`} />
+                                    <Home size={32} onClick={() => window.location.href = "/?page=about"} className={`${ButtonStyle}`} />
                                 </div>
                             </>)}
 

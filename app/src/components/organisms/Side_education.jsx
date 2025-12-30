@@ -1,5 +1,6 @@
 import unicep_logo from "../../assets/images/Logos/education/Unicep-Vetor.png"
 import senai_sp_logo from "../../assets/images/Logos/education/senai_sp_logo.png"
+import EducationItem from "../atoms/EducationItem";
 
 /**
  * 
@@ -17,7 +18,7 @@ import senai_sp_logo from "../../assets/images/Logos/education/senai_sp_logo.png
  * }} props
  */
 
-export default function EducationCard({ darkMode, itensData }) {
+export default function EducationSidebar({ darkMode, itensData }) {
 
     const itens = itensData ? itensData : [{
         logo: unicep_logo,
@@ -174,51 +175,14 @@ export default function EducationCard({ darkMode, itensData }) {
     }]
 
     return (
-        <>
-            <div>
-
-
-                {itens.map((element, index) => (
-                    <div key={index} className="justify-center pt-4 m-4">
-                        <div
-                            className={`w-full rounded-xl p-4 origin-top transition-transform duration-700 hover:scale-[1.02]
-                        ${darkMode
-                                    ? "text-[#FFE3C8] bg-[#00000044] border-2 border-[#201F20] hover:border-[#DD01E6]"
-                                    : "text-[#403E40] bg-[#e2e0e2] border-2 border-[#EEECEE] hover:border-[#FFFF20]"
-                                }`}
-                        >
-                            {/* Header */}
-                            <div className="flex gap-4 items-start">
-                                <img
-                                    src={element.logo}
-                                    alt={element.logo_alt_text}
-                                    className="w-32 h-32 object-contain"
-                                />
-
-                                <div>
-                                    <h3 className="text-2xl font-bold leading-tight">
-                                        {element.institution}
-                                    </h3>
-
-                                    <p className="text-sm opacity-80">
-                                        {element.formationLevel} • {element.formation}
-                                    </p>
-
-                                    <p className="text-xs opacity-60 mt-1">
-                                        {element.startDate} — {element.endDate}
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="pt-4 text-sm leading-relaxed">
-                                {element.description}
-                            </div>
-                        </div>
-
-                        <hr className="text-amber-50 m-8" />
-                    </div>
-                ))}
-            </div>
-        </>
-    )
+        <div>
+            {itens.map((item, index) => (
+                <EducationItem
+                    key={index}
+                    data={item}
+                    darkMode={darkMode}
+                />
+            ))}
+        </div>
+    );
 }
