@@ -14,15 +14,15 @@ export default function CardHolder({ title, element, darkMode }) {
         <>
             <div className={`${darkMode ? "text-[#FFE3C8] bg-[#201F20]" : "text-[#000000] bg-[#DEDCDE]"}`}>
 
-                <div className={`text-4xl pl-5 pt-3 pb-1 pr-5`}>
+                <div className={`text-4xl md:pl-5 md:pt-3 md:pb-1 md:pr-5`}>
                     {title ? title : ""}
                 </div>
 
                 <div className={`
-                pl-6 pb-1 pt-1 pr-6
+                md:pl-6 md:pb-1 md:pt-1 md:pr-6
                 grid
                 grid-cols-1
-                gap-2
+                md:gap-2
                 sm:grid-cols-2
                 lg:grid-cols-3
                 xl:grid-cols-4

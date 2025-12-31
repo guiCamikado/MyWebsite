@@ -12,6 +12,7 @@ export default function SideBarCluster({
     ClusterTitle,
     ClusterData,
     darkMode,
+    onItemClick
 }) {
     return (
         <>
@@ -27,6 +28,7 @@ export default function SideBarCluster({
                             darkMode={darkMode}
                             text={item.text}
                             link={item.link}
+                            onItemClick={onItemClick}
                         />
                     ))}
 

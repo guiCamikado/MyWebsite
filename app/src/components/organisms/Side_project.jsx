@@ -1,3 +1,5 @@
+import MobileManager from "../../utils/MobileManager"
+
 import ioturn_1 from "../../assets/images/photos/ioturn/ioturn_1.jpeg"
 import ioturn_2 from "../../assets/images/photos/ioturn/ioturn_2.png"
 import ioturn_3 from "../../assets/images/photos/ioturn/ioturn_3.png"
@@ -21,7 +23,6 @@ import docker_icon from "../../assets/images/Logos/languageIcons/docker-mark-blu
 import sql_icon from "../../assets/images/Logos/languageIcons/sql_icon.png"
 import github_icon from "../../assets/images/Logos/ToolIcons/github_icon.png"
 import markdown_icon from "../../assets/images/Logos/ToolIcons/markdown_icon.svg"
-
 
 import ImageSlider from "../molecules/ImageSlider"
 import CurrentStatus from "../atoms/CurrentStatus"
@@ -109,13 +110,13 @@ export default function ProjectSidebar({ darkMode, content }) {
         }]
 
     return (
-        <div className="flex justify-center items-center min-h-screen">
-            <div className="grid grid-cols-2 m-2 h-[90%] w-[95%] justify-center mx-auto">
+        <div className="md:flex justify-center items-center min-h-screen">
+            <div className="md:grid grid-cols-2 md:m-2 md:h-[90%] md:w-[95%] justify-center mx-auto">
 
                 {data.map((item, index) => (
                     <div
                         key={index}
-                        className={`flex flex-row h-auto rounded-2xl m-4 origin-top-left 
+                        className={`md:flex flex-row h-auto rounded-2xl m-4 origin-top-left 
         hover:rotate-1 hover:scale-105 transition-transform duration-600
         ${darkMode ? "bg-[#403E4022]" : "bg-[#E2E0E2]"}`}
                     >
@@ -150,7 +151,8 @@ export default function ProjectSidebar({ darkMode, content }) {
                                 </a>
                             </div>
                         </div>
-                        <TecnologiesColumn data={item.technologies} />
+                        
+                        {!MobileManager.isMobile(screen.width) ? <TecnologiesColumn data={item.technologies}/> : ""}
                     </div>
                 ))}
 

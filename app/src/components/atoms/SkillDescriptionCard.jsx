@@ -27,12 +27,12 @@ export default function SkillDescriptionCard({ darkMode, itensData }) {
     })
 
     return (
-        <div className="justify-center pt-4 mb-5">
+        <div className="justify-center pt-2 md:pt-4 md:mb-5">
             <div className={`${darkMode
-                ? "text-[#FFE3C8] bg-[#00000044] p-4 border-2 border-[#201F20] hover:border-[#DD01E6]"
-                : "text-[#000000] bg-[#DEDCDE] border-2 border-[#DEDCDE] hover:border-[#FFFF20]"
-                } w-full max-w-md min-w-[33%] min-h-[20%] rounded-xl p-2 origin-top-left hover:rotate-1 hover:scale-105 transition-transform duration-600 ease-in-out`}>
-                <div className="flex gap-4 flex-wrap sm:flex-nowrap">
+                ? "text-[#FFE3C8] bg-[#00000044] p-4 md:border-2 border-[#201F20] hover:border-[#DD01E6]"
+                : "text-[#000000] bg-[#DEDCDE] md:border-2 border-[#DEDCDE] hover:border-[#FFFF20]"
+                } w-full max-w-md min-w-[33%] md:min-h-[20%] rounded-xl md:p-2 origin-top-left hover:rotate-1 hover:scale-105 transition-transform duration-600 ease-in-out`}>
+                <div className="flex md:gap-4 flex-wrap sm:flex-nowrap">
                     <img src={itens.icon} alt="ManyIcons" className="size-16 shrink-0" />
 
                     <b className="text-3xl">

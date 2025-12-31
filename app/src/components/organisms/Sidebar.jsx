@@ -35,8 +35,12 @@ function Sidebar({ data, handleEventInput, element }) {
         handleEventInput(isMenuOpenData)
     }, [isActive])
 
-
-
+    // Fecha caso Mobile
+    const closeMenuOnMobile = () => {
+        if (window.innerWidth < 768) {
+            setIsActive(false)
+        }
+    }
     const ButtonStyle = darkMode
         ? "rounded-xl text-[#FFE3C8] bg-[#00000044] p-1 cursor-pointer transition-all duration-200 hover:text-[#DD01E6] hover:scale-105"
         : "rounded-xl bg-black/5 p-1 cursor-pointer transition-all duration-300 hover:text-[#FFEF20] hover:bg-black/10 hover:scale-105 text-[#000000]";
@@ -47,8 +51,8 @@ function Sidebar({ data, handleEventInput, element }) {
 
                 <aside
                     className={darkMode
-                        ? `min-h-screen sticky top-0 bg-black text-[#FFE3C8] transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
-                        : `min-h-screen sticky top-0 bg-[#D4D3D4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`
+                        ? `min-h-screen sticky top-0 bg-black text-[#FFE3C8] transition-all duration-300 ease-in-out ${isActive ? "w-full md:w-64" : "w-16"}`
+                        : `min-h-screen sticky top-0 bg-[#D4D3D4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-full md:w-64" : "w-16"}`
                     }
                 >
 
@@ -89,21 +93,27 @@ function Sidebar({ data, handleEventInput, element }) {
                                 }
                         `}
                         >
-                            <SideBarCluster darkMode={darkMode} ClusterTitle="Perfil" ClusterData={
-                                [
-                                    { text: "Sobre", link: "?page=about" },
-                                    { text: "Experiência", link: "?page=experience" },
-                                    { text: "Formação Acadêmica", link: "?page=formation" },
-                                    { text: "Habilidades", link: "?page=skills" },
-                                    { text: "Projetos", link: "?page=projects" },
-                                ]
-                            } />
+                            <SideBarCluster
+                                darkMode={darkMode}
+                                ClusterTitle="Perfil"
+                                onItemClick={closeMenuOnMobile}
+                                ClusterData={
+
+                                    [
+                                        { text: "Sobre", link: "?page=about" },
+                                        { text: "Experiência", link: "?page=experience" },
+                                        { text: "Formação Acadêmica", link: "?page=formation" },
+                                        { text: "Habilidades", link: "?page=skills" },
+                                        { text: "Projetos", link: "?page=projects" },
+                                    ]
+                                } />
 
                         </div>
                     </>
                     )}
                 </aside>
-                <div className="flex overflow-y-auto">
+
+                <div className={`${isActive ? "hidden" : ""} md:flex overflow-y-auto`}>
                     {element}
                 </div>
             </div>

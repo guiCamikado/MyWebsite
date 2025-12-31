@@ -9,7 +9,7 @@ import picture_03 from "../../assets/images/photos/myPhotos/picture_03.jpg"
 export default function AboutSidebar({ darkMode }) {
     return (
         <>
-            <div className="justify-center itens-center h-screen w-screen">
+            <div className="justify-center itens-center h-auto w-auto">
 
                 {/* polygon(0 25%, 25% 0, 49% 0, 85% 0%, 100% 0, 100% 15%, 100% 85%, 100% 100%, 85% 100%, 15% 100%, 0 100%, 0% 85%); */}
 
@@ -17,31 +17,30 @@ export default function AboutSidebar({ darkMode }) {
                 <TextCamp
                     darkMode={darkMode}
                     text={
-                        <div className="flex gap-8 items-center">
+                        <div className="md:flex md:gap-8 items-center">
 
                             {/* IMAGEM COM CLIP-PATH */}
                             <div
-
                                 style={{
                                     clipPath:
                                         "circle(40% at 50% 50%)",
                                     overflow: "hidden",
                                 }}
-                                className="w-[15%] h-[20%] border-2 hover:scale-120 hover:border-[#DD01E6] shrink-0 transition-transform  duration-500  ease-in-out  hover:rotate-28800"
+                                className=" md:w-[15%] h-[20%] border-2 hover:scale-120 hover:border-[#DD01E6] shrink-0 transition-transform  duration-500  ease-in-out  hover:rotate-28800"
                             >
                                 <img
                                     src={picture_03}
                                     alt="Foto de Guilherme Camikado"
-                                    className="w-full h-full"
+                                    className="md:w-full md:h-full"
                                 />
                             </div>
 
                             {/* TEXTO */}
-                            <div className="flex flex-col gap-1">
-                                <p className="text-4xl font-semibold">Guilherme Andrade Camikado</p>
-                                <p className="text-2xl text-gray-400">Desenvolvedor Full-Stack Jr</p>
+                            <div className="md:flex md:flex-col gap-1">
+                                <p className="md:text-4xl font-semibold">Guilherme Andrade Camikado</p>
+                                <p className="md:text-2xl text-gray-400">Desenvolvedor Full-Stack Jr</p>
 
-                                <div className="mt-4 space-y-1 text-1x1">
+                                <div className="md:mt-4 space-y-1 text-1x1">
                                     <p><strong>Local:</strong> Brasil – São Carlos, SP</p>
                                     <p><strong>Telefone:</strong> (16) 99328-2169</p>
                                     <p>
@@ -75,12 +74,12 @@ export default function AboutSidebar({ darkMode }) {
                                 </div>
                             </div>
 
-                            <div class="h-70 w-px bg-gray-400"></div>
+                            <div class="hidden md:flex h-70 w-px bg-gray-400"></div>
 
                             <div className="flex flex-col w-[40%]">
                                 <p className="font-semibold text-lg "></p>
 
-                                <div className="flex flex-wrap gap-2 text-center">
+                                <div className="hidden md:flex flex-wrap gap-2 text-center">
 
                                     {["Java", "Python", "JavaScript", "C#", "SQL", "Blender", "Unity", "Office 365", "Wireshark", "Sleuth Kit", "GitHub", "Scrum", "Flask", "Spring Boot", "React", "MUI", "Tailwind CSS", "ASP Classic", "Windows", "Linux", "Bash", "Shell", "JSON", "XML", "Markdown"].map((tech) => (
                                         <span

@@ -30,7 +30,7 @@ export default function ExperienceCard({ darkMode, itensData }) {
         endDate: "Dez 2025",
         description:
             <>
-                <p className="indent-4 mt-4">
+                <p className="md:indent-4 mt-4">
                     Como meu primeiro emprego de carteira assinada trabalhei como desenvolvedor em uma plataforma ASP Classic criando
                     e realizando manutenções no código legado da empresa.
                     Durante esse período realizei o desenvolvimento de páginas para o gerenciamento do laboratório de análise e desenvolvimento que
@@ -47,14 +47,14 @@ export default function ExperienceCard({ darkMode, itensData }) {
     }
 
     return (
-        <div className="justify-center p-4 m-4">
+        <div className="justify-center md:p-4 md:m-4">
             <div className={`${darkMode
                 ? "text-[#FFE3C8] bg-[#00000044] border-2 border-[#201F20] hover:border-[#DD01E6]"
                 : "text-[#403E40] bg-[#e2e0e2] border-2 border-[#EEECEE] hover:border-[#FFFF20]"
                 } w-full rounded-xl p-4 origin-top hover:scale-102 transition-transform duration-900 ease-in-out`}>
 
                 {/* Header */}
-                <div className="flex gap-4 items-center">
+                <div className="md:flex md:gap-4 items-center">
                     <img
                         src={itens.logo}
                         alt={itens.logo_alt_text}
