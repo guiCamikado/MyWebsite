@@ -12,4 +12,4 @@ FEITO
 - Aumentar as coisas utilizadas no projeto IoTurn que foram MUUUITAS
 - Mover formação para organism
 
-
+---
