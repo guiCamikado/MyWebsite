@@ -1,32 +1,33 @@
-using Api.Data;
-using Microsoft.EntityFrameworkCore;
+using Data.User;
+using Dapper;
+using MySqlConnector;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Program;
 
-builder.Services.AddControllers();
-
-builder.Services.AddDbContext<AppDbContext>(options =>
+internal class Program
 {
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(
-            builder.Configuration.GetConnectionString("DefaultConnection")
-        )
-    );
-});
+    static void Main(string[] args)
+    {
+        string connectionString =
+            "Server=localhost;Port=3306;Database=mywebsite;User=root;Password=admin;";
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddOpenApi();
+        using var connection = new MySqlConnection(connectionString);
 
-var app = builder.Build();
+        var user = new User
+        {
+            First_name = "Guilherme",
+            Last_name = "Andrade Camikado",
+            Email = "guilherme.camikado3@gmail.com",
+            Password = "admin"
+        };
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
+        string insertQuery = @"
+            INSERT INTO users (first_name, last_name, email, password)
+            VALUES (@First_name, @Last_name, @Email, @Password);
+        ";
+
+        connection.Execute(insertQuery, user);
+
+        Console.WriteLine("Usuário inserido com sucesso!");
+    }
 }
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
