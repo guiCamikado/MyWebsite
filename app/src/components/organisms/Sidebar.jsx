@@ -62,7 +62,7 @@ function Sidebar({ data, handleEventInput, element }) {
                         <div className="flex items-center gap-3">
                             {isActive ? (<>
                                 <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                <Home size={32} onClick={() => window.location.href = "/?page=about"} className={`${ButtonStyle}`} />
+                                <Home size={32} onClick={() => window.location.href = "/MyWebsite/?page=about"} className={`${ButtonStyle}`} />
 
                                 <div className="absolute right-4 top-4">
                                     <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
