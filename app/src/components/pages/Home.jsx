@@ -53,11 +53,11 @@ export default function Home() {
 
     const renderContent = () => {
         switch (renderedPage) {
-            case "skills": return <SkillsSidebar darkMode={data.darkMode} />;
-            case "projects": return <ProjectsSidebar darkMode={data.darkMode} />;
+            default: return <SobreSidebar darkMode={data.darkMode} />;
             case "experience": return <ExperienceCard darkMode={data.darkMode} />;
             case "formation": return <EducationCard darkMode={data.darkMode} />;
-            default: return <SobreSidebar darkMode={data.darkMode} />;
+            case "skills": return <SkillsSidebar darkMode={data.darkMode} />;
+            case "projects": return <ProjectsSidebar darkMode={data.darkMode} />;
         }
     };
 
