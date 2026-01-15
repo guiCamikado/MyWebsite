@@ -1,33 +1,17 @@
-using Data.User;
-using Dapper;
-using MySqlConnector;
+using Data;
+using Microsoft.VisualBasic;
+using Routes;
 
-namespace Program;
+var builder = WebApplication.CreateBuilder(args);
 
-internal class Program
-{
-    static void Main(string[] args)
-    {
-        string connectionString =
-            "Server=localhost;Port=3306;Database=mywebsite;User=root;Password=admin;";
+builder.Services.AddSingleton<DbConnectionFactory>();
+var serverConnection = builder.Configuration.GetConnectionString("Server")!;
+var dbConnection = builder.Configuration.GetConnectionString("Default")!;
 
-        using var connection = new MySqlConnection(connectionString);
+DatabaseInitializer.EnsureDatabase(serverConnection);
+DatabaseInitializer.EnsureTables(dbConnection);
 
-        var user = new User
-        {
-            First_name = "Guilherme",
-            Last_name = "Andrade Camikado",
-            Email = "guilherme.camikado3@gmail.com",
-            Password = "admin"
-        };
-
-        string insertQuery = @"
-            INSERT INTO users (first_name, last_name, email, password)
-            VALUES (@First_name, @Last_name, @Email, @Password);
-        ";
-
-        connection.Execute(insertQuery, user);
-
-        Console.WriteLine("Usuário inserido com sucesso!");
-    }
-}
+var app = builder.Build();
+app.MapUsersEndpoints();
+app.MapAccessManagementEndpoints();
+app.Run();
