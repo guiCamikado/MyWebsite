@@ -1,6 +1,16 @@
-@Api_HostAddress = http://localhost:5247
+# @Api_HostAddress = http://localhost:5247
 
-GET {{Api_HostAddress}}/weatherforecast/
-Accept: application/json
+# GET {{Api_HostAddress}}/weatherforecast/
+# Accept: application/json
 
-###
+
+### Adicionar usuário
+POST http://localhost:5247/api/add_user
+Content-Type: application/json
+
+{
+  "firstName": "Guilherme",
+  "lastName": "Camikado",
+  "email": "guilherme90@email.com",
+  "password": "MinhaSenhaSegura123"
+}

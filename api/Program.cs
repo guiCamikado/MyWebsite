@@ -2,6 +2,7 @@ using Data;
 using Microsoft.VisualBasic;
 using Routes;
 
+// App
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<DbConnectionFactory>();

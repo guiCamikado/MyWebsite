@@ -1,26 +1,23 @@
-using _Models = Models;
-using _MySqlConnector = MySqlConnector;
-using _Data = Data;
+using _Models = Models; // Responsavel por padronização de parâmetros
+using _MySqlConnector = MySqlConnector; // Responsavel pelo manuseio da linguagem query
+using _Data = Data; // Responsavel pela conexão do banco de dados
+using _Security = api.Security; //Responsavel por hashing
 
 namespace Routes;
 
-public static class UsersRoutes
-{
-    public static void MapUsersEndpoints(this WebApplication app)
-    {
+public static class UsersRoutes {
+    public static void MapUsersEndpoints(this WebApplication app) {
         app.MapPost("/api/add_user", AddUser);
     }
 
     // Task<IResult> -> método assíncrono que, no final, devolve uma resposta HTTP.
-    private static async Task<IResult> AddUser(_Models.User user, _Data.DbConnectionFactory db)
-    {
+    private static async Task<IResult> AddUser(_Models.User user, _Data.DbConnectionFactory db) {
 
         // WIP é necessário criar uma lógica que:
         // 1. Verifica se "email" existe no banco dee dados -> Caso exista devolver "Email já utilizado", Caso não exista então executar query a baixo
 
         // Cria conexão com o banco de garante que fechara de forma async quando método terminar
-        if (await IsDuplicatedEmail(user.Email, db))
-        {
+        if (await IsDuplicatedEmail(user.Email, db)) {
             return Results.Conflict("Error Email já utilizado");
         }
 
@@ -38,7 +35,7 @@ public static class UsersRoutes
         command.Parameters.AddWithValue("@FirstName", user.FirstName);
         command.Parameters.AddWithValue("@LastName", user.LastName);
         command.Parameters.AddWithValue("@Email", user.Email);
-        command.Parameters.AddWithValue("@Password", user.Password);
+        command.Parameters.AddWithValue("@Password", _Security.PasswordHasher.GetHash(user.Password));
 
         await command.ExecuteNonQueryAsync();
 
@@ -48,8 +45,7 @@ public static class UsersRoutes
     // Verifica se E-mail já existe no db e retorne true ou false
     private static async Task<bool> IsDuplicatedEmail(
         string email,
-        _Data.DbConnectionFactory db)
-    {
+        _Data.DbConnectionFactory db) {
         await using var connection = db.Create();
         await connection.OpenAsync();
 
