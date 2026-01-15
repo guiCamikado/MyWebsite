@@ -26,7 +26,7 @@ import EducationCard from "../organisms/Side_education";
 export default function Home() {
     const [renderedPage, setRenderedPage] = useState("");
     const [data, setData] = useState(
-        JSON.parse(localStorage.getItem("GuisProfile")) || {}
+        JSON.parse(localStorage.getItem("GuisProfile")) || {sideMenuOpen:true, darkMode:true}
     );
 
     useEffect(() => {
