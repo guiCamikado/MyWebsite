@@ -15,6 +15,7 @@ public static class PasswordHasher {
     private const int KeySize = 32;        // 256 bits
     private const int Iterations = 100_000;
 
+    // Gera hash da senha
     public static string GetHash(string password) {
         using var pbkdf2 = new Rfc2898DeriveBytes(password, SaltSize, Iterations, HashAlgorithmName.SHA256);
 
@@ -23,7 +24,7 @@ public static class PasswordHasher {
 
         return $"{Convert.ToBase64String(salt)}.{Convert.ToBase64String(key)}";
     }
-
+    // Verifica validade da senha do usuário
     public static bool VerifyHash(string password, string storedHash) {
         var parts = storedHash.Split('.');
         if (parts.Length != 2) return false;

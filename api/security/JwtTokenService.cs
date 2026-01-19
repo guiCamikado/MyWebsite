@@ -5,28 +5,18 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Security;
 
-public class JwtTokenService
-{
+public class JwtTokenService {
     private readonly IConfiguration _config;
 
-    public JwtTokenService(IConfiguration config)
-    {
+    public JwtTokenService(IConfiguration config) {
         _config = config;
     }
 
-    public string GenerateToken(int userId, string email)
-    {
-        // Chave armazenada em appsettings.json
-        var key = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(_config["Jwt:Key"]!)
-        );
-
-        var creds = new SigningCredentials(
-            key, SecurityAlgorithms.HmacSha256
-        );
-
-        var claims = new[]
-        {
+    public string GenerateToken(int userId, string email) {
+        // Chave
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var claims = new[] {
             new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
             new Claim(ClaimTypes.Email, email)
         };

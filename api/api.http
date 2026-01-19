@@ -1,25 +1,37 @@
-# @Api_HostAddress = http://localhost:5247
+@Api_HostAddress = http://localhost:5247
 
-# GET {{Api_HostAddress}}/weatherforecast/
-# Accept: application/json
+### Obtem todos os acessos
+GET {{Api_HostAddress}}/api/data/access_numbers/
+Accept: application/json
+###
 
+### Envia novo acesso
+POST {{Api_HostAddress}}/api/data/new_access
+Content-Type: application/json
 
-## Adicionar usuário
-POST http://localhost:5247/api/auth/register
+{
+  "IpAddress": "192.168.0.10"
+}
+###
+
+### Adicionar usuários
+POST {{Api_HostAddress}}/api/auth/register
 Content-Type: application/json
 
 {
   "firstName": "Guilherme",
   "lastName": "Camikado",
-  "email": "guilherme90@email.com",
+  "email": "guilherme91@email.com",
   "password": "MinhaSenhaSegura123"
 }
+###
 
-### Login
-POST http://localhost:5247/api/auth/login
+### Retorna token JWT com usuário no mesmo
+POST {{Api_HostAddress}}/api/auth/login
 Content-Type: application/json
        
 {
-  "email": "guilherme90@email.com",
+  "email": "guilherme91@email.com",
   "password": "MinhaSenhaSegura123"
 }
+###
