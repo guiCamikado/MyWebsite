@@ -7,27 +7,42 @@ using System.Collections;
 
 namespace api.Security;
 
-public class PasswordHasher {
-    // Converte array de bytes em string hexadecimal
-    public static string GetHash(string input) {
-        using (var sha256Hash = Criptography.SHA256.Create()) {
-            byte[] data = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-            var sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++) {
-                sBuilder.Append(data[i].ToString("x2"));
-            }
-            return sBuilder.ToString();
-        }
+using System.Security.Cryptography;
+using System.Text;
+
+public static class PasswordHasher {
+    private const int SaltSize = 16;       // 128 bits
+    private const int KeySize = 32;        // 256 bits
+    private const int Iterations = 100_000;
+
+    public static string GetHash(string password) {
+        using var pbkdf2 = new Rfc2898DeriveBytes(password, SaltSize, Iterations, HashAlgorithmName.SHA256);
+
+        var salt = pbkdf2.Salt;
+        var key = pbkdf2.GetBytes(KeySize);
+
+        return $"{Convert.ToBase64String(salt)}.{Convert.ToBase64String(key)}";
     }
 
+    public static bool VerifyHash(string password, string storedHash) {
+        var parts = storedHash.Split('.');
+        if (parts.Length != 2) return false;
 
-    // Verfica se hash bate.
-    public static bool VerifyHash(string input, string hash) {
-        using (var sha256Hash = Criptography.SHA256.Create()) {
-            var hashOfInput = GetHash(input);
+        var salt = Convert.FromBase64String(parts[0]);
+        var storedKey = Convert.FromBase64String(parts[1]);
 
-            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-            return comparer.Compare(hashOfInput, hash) == 0; // Compara e retorna true se iguais
-        }
+        using var pbkdf2 = new Rfc2898DeriveBytes(
+            password,
+            salt,
+            Iterations,
+            HashAlgorithmName.SHA256
+        );
+
+        var computedKey = pbkdf2.GetBytes(KeySize);
+
+        return CryptographicOperations.FixedTimeEquals(
+            computedKey,
+            storedKey
+        );
     }
 }

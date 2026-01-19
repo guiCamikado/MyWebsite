@@ -4,13 +4,22 @@
 # Accept: application/json
 
 
-### Adicionar usuário
-POST http://localhost:5247/api/add_user
+## Adicionar usuário
+POST http://localhost:5247/api/auth/register
 Content-Type: application/json
 
 {
   "firstName": "Guilherme",
   "lastName": "Camikado",
+  "email": "guilherme90@email.com",
+  "password": "MinhaSenhaSegura123"
+}
+
+### Login
+POST http://localhost:5247/api/auth/login
+Content-Type: application/json
+       
+{
   "email": "guilherme90@email.com",
   "password": "MinhaSenhaSegura123"
 }
