@@ -23,7 +23,13 @@ Foi desenvolvido utilizando a **build-in tool Vite** + **node v24.11.0** para ro
 Uma vez com o node instalado é necessário abrir um console no local do projeto e rodar com o comando:
 
 ``` bash
-    >>> npm run dev 
+    >>> npm i
+```
+
+ou
+
+``` bash
+    >>> npm install
 ```
 
 Com isso o node instalara todas as dependencias necessárias que se encontram no arquivo:
@@ -31,6 +37,12 @@ Com isso o node instalara todas as dependencias necessárias que se encontram no
  `app>src>package.json`
 
 ---
+
+Após isso para rodar o projeto localmente é nessesário utilizar:
+
+``` bash
+    >>> npm run dev
+```
 
 ### Back-end
 O Back-end foi desenvolvido utilizando **.NET 9.0** e foi escrito utilizando **arquitetura de camadas** isso é quando a responsabilidade das classes são separadas por pastas de nome que fazem referencia a função pelo qual as classes exercem São elas até o determinado momento:

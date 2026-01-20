@@ -84,15 +84,16 @@ function Sidebar({ data, handleEventInput, element }) {
                     {isActive && (<>
                         <div
                             className={`
-                        flex flex-col gap-2 px-4
-                        overflow-hidden
-                        transition-all duration-500 ease-in-out
-                        ${isActive
+                                    flex flex-col gap-2 px-4
+                                    overflow-hidden
+                                    transition-all duration-500 ease-in-out
+                                ${isActive
                                     ? "opacity-100 translate-y-0 delay-300"
                                     : "opacity-0 translate-y-2 max-h-0 pointer-events-none"
                                 }
                         `}
                         >
+                            <hr className="border-white/20" />
                             <SideBarCluster
                                 darkMode={darkMode}
                                 ClusterTitle="Perfil"
@@ -108,6 +109,17 @@ function Sidebar({ data, handleEventInput, element }) {
                                     ]
                                 } />
 
+                            {/* WIP aqui é necessário verificar se o usuário está ou não conectado, tendo isso de informação mostra-se ou não esse sideBarCluester */}
+                            <SideBarCluster
+                                darkMode={darkMode}
+                                ClusterTitle="Conta"
+                                onItemClick={closeMenuOnMobile}
+                                ClusterData={
+
+                                    [
+                                        { text: "Registrar", link: "?page=register" },
+                                    ]
+                                } />
                         </div>
                     </>
                     )}

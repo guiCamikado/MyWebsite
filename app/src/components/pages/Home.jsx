@@ -13,6 +13,7 @@ import ProjectsSidebar from "../organisms/Side_project";
 import SobreSidebar from "../organisms/Side_about";
 import ExperienceCard from "../organisms/Side_experience";
 import EducationCard from "../organisms/Side_education";
+import RegisterPage from "../temp/RegisterPage";
 
 /** Docs
  * @startDate 21/12/25
@@ -25,24 +26,17 @@ import EducationCard from "../organisms/Side_education";
 
 export default function Home() {
     const [renderedPage, setRenderedPage] = useState("");
-    const [data, setData] = useState(
-        JSON.parse(localStorage.getItem("GuisProfile")) || {sideMenuOpen:true, darkMode:true}
-    );
+    const [data, setData] = useState(JSON.parse(localStorage.getItem("GuisProfile")) || { sideMenuOpen: true, darkMode: true });
 
     useEffect(() => {
         const page = new URLSearchParams(window.location.search);
         setRenderedPage(page.get("page"));
     }, []);
 
-    // 🔥 AQUI É O CORRETO
     useEffect(() => {
         const html = document.documentElement;
-
-        if (data.darkMode) {
-            html.classList.add("dark");
-        } else {
-            html.classList.remove("dark");
-        }
+        if (data.darkMode) { html.classList.add("dark"); }
+        else { html.classList.remove("dark"); }
     }, [data.darkMode]);
 
     const handleEventInput = async (e) => {
@@ -58,6 +52,7 @@ export default function Home() {
             case "formation": return <EducationCard darkMode={data.darkMode} />;
             case "skills": return <SkillsSidebar darkMode={data.darkMode} />;
             case "projects": return <ProjectsSidebar darkMode={data.darkMode} />;
+            case "register": return <RegisterPage darkMode={data.darkMode} />
         }
     };
 
