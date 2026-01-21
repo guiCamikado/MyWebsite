@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Menu, Home, SunMoon } from "lucide-react"
-import SideBarCluster from "../molecules/SidebarCluster"
+import SideBarCluster from "@/components/molecules/SidebarCluster"
 /** Docs
 * @startDate 21/12/25
 * @lastUpdate 21/12/25 
@@ -117,7 +117,7 @@ function Sidebar({ data, handleEventInput, element }) {
                                 ClusterData={
 
                                     [
-                                        { text: "Registrar", link: "?page=register" },
+                                        { text: "Login", link: "?page=login" },
                                     ]
                                 } />
                         </div>

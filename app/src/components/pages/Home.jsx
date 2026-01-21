@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import FormDataManager from "../../utils/FormDataManager";
 
-import Sidebar from "../organisms/Sidebar";
+import Sidebar from "../templates/Sidebar";
 import CardHolder from "../atoms/CardHolder";
 
 // Clusters
@@ -13,7 +13,7 @@ import ProjectsSidebar from "../organisms/Side_project";
 import SobreSidebar from "../organisms/Side_about";
 import ExperienceCard from "../organisms/Side_experience";
 import EducationCard from "../organisms/Side_education";
-import RegisterPage from "../temp/RegisterPage";
+import LoginPage from "../organisms/Side_LoginPage";
 
 /** Docs
  * @startDate 21/12/25
@@ -52,7 +52,7 @@ export default function Home() {
             case "formation": return <EducationCard darkMode={data.darkMode} />;
             case "skills": return <SkillsSidebar darkMode={data.darkMode} />;
             case "projects": return <ProjectsSidebar darkMode={data.darkMode} />;
-            case "register": return <RegisterPage darkMode={data.darkMode} />
+            case "login": return <LoginPage darkMode={data.darkMode} />
         }
     };
 
