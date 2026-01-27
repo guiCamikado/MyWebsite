@@ -1,4 +1,4 @@
-export default function InputCamp({ darkmode, onChange, placeholder, type, icon }) {
+export default function InputCamp({ darkmode, onChange, placeholder, type, icon, iconClass }) {
     const inputStyle = darkmode
         ? `
             w-full px-3 py-2
@@ -29,7 +29,7 @@ export default function InputCamp({ darkmode, onChange, placeholder, type, icon 
                     placeholder={placeholder}
                     className={inputStyle} />
 
-                <div className="size-0.5 pt-3">{icon}</div>
+                <div className= {iconClass ?? "size-0.5 pt-3"}>{icon}</div>
             </div >
         </>
     )

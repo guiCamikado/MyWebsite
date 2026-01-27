@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Menu, Home, SunMoon } from "lucide-react"
+import { Menu, Home, SunMoon, CircleUser } from "lucide-react"
 import SideBarCluster from "@/components/molecules/SidebarCluster"
 /** Docs
 * @startDate 21/12/25
@@ -62,7 +62,8 @@ function Sidebar({ data, handleEventInput, element }) {
                         <div className="flex items-center gap-3">
                             {isActive ? (<>
                                 <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                <Home size={32} onClick={() => window.location.href = "/MyWebsite/?page=about"} className={`${ButtonStyle}`} />
+                                <Home size={32} onClick={() => window.location.href = "?page=about"} className={`${ButtonStyle}`} />
+                                <CircleUser size={32} onClick={() => window.location.href = "?page=login"} className={`${ButtonStyle}`} />
 
                                 <div className="absolute right-4 top-4">
                                     <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
@@ -72,7 +73,8 @@ function Sidebar({ data, handleEventInput, element }) {
                                 <div className="grid grid-cols-1 gap-4">
                                     <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
                                     <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                    <Home size={32} onClick={() => window.location.href = "/?page=about"} className={`${ButtonStyle}`} />
+                                    <Home size={32} onClick={() => window.location.href = "?page=about"} className={`${ButtonStyle}`} />
+                                    <CircleUser size={32} onClick={() => window.location.href = "?page=login"} className={`${ButtonStyle}`} />
                                 </div>
                             </>)}
 
@@ -112,14 +114,16 @@ function Sidebar({ data, handleEventInput, element }) {
                             {/* WIP aqui é necessário verificar se o usuário está ou não conectado, tendo isso de informação mostra-se ou não esse sideBarCluester */}
                             <SideBarCluster
                                 darkMode={darkMode}
-                                ClusterTitle="Conta"
+                                ClusterTitle="Dados"
                                 onItemClick={closeMenuOnMobile}
                                 ClusterData={
 
                                     [
-                                        { text: "Login", link: "?page=login" },
+                                        { text: "Estatisticas", link: "?page=statistics" },
                                     ]
                                 } />
+
+
                         </div>
                     </>
                     )}

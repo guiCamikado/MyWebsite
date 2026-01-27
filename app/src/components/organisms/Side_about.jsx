@@ -1,4 +1,4 @@
-import CardHolder from "../atoms/CardHolder";
+import CardHolder from "../atoms/CardHolders";
 import CardHolderChild from "../atoms/CardHolderChild";
 import TextCamp from "../atoms/TextCamp";
 

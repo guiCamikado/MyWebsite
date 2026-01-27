@@ -1,11 +1,12 @@
-export default function Link({ darkMode, link, text }) {
+export default function AppLink({ darkMode, link, text }) {
     return (
         <a
-            href={link}
+            href={`?page=${link}`}
             className={darkMode
                 ? "text-[#DD01E6] underline"
-                : "text-[#000ff0] underline"}>
-            {text ?? "Defina um texto"}
-        </a >
+                : "text-[#000ff0] underline"}
+        >
+            {text}
+        </a>
     )
 }

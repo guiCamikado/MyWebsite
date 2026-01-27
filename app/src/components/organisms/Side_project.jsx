@@ -110,7 +110,7 @@ export default function ProjectSidebar({ darkMode, content }) {
     }]
 
   return (
-    <div className="md:flex justify-center items-center min-h-screen">
+    <div className="md:flex justify-center items-center min-h-screen transform-gpu">
       <div className="md:grid grid-cols-2 md:m-2 md:h-[90%] md:w-[95%] justify-center mx-auto">
 
         {data.map((item, index) => (

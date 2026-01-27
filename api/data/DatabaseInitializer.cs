@@ -31,7 +31,16 @@ public static class DatabaseInitializer
                 password VARCHAR(255) NOT NULL
             );
         """;
+        command.ExecuteNonQuery();
 
+        command.CommandText = """
+            CREATE TABLE IF NOT EXISTS connectionLog (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                ip_address VARCHAR(100) NOT NULL,
+                is_first BOOLEAN NOT NULL DEFAULT FALSE,
+                time DATETIME NOT NULL
+            );
+        """;
         command.ExecuteNonQuery();
     }
 }

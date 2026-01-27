@@ -15,8 +15,9 @@ var dbConnection = builder.Configuration.GetConnectionString("Default")!;
 DatabaseInitializer.EnsureDatabase(serverConnection);
 DatabaseInitializer.EnsureTables(dbConnection);
 
-// Chama aplicação
+// Chamada de aplicação
 var app = builder.Build();
 app.MapUsersEndpoints();
 app.MapAccessManagementEndpoints();
+app.MapIpManagerEndpoints();
 app.Run();

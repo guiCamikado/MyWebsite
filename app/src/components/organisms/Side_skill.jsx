@@ -1,4 +1,4 @@
-import CardHolder from "../atoms/CardHolder";
+import CardHolder from "../atoms/CardHolders";
 import ClusterLinguagens from "../molecules/SkillClusters/ClusterLinguagens";
 import ClusterFerramentas from "../molecules/SkillClusters/ClusterFerramentas";
 import ClusterFrameworks from "../molecules/SkillClusters/ClusterFrameworks";

@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import FormDataManager from "../../utils/FormDataManager";
 
 import Sidebar from "../templates/Sidebar";
-import CardHolder from "../atoms/CardHolder";
+import CardHolder from "../atoms/CardHolders";
 
 // Clusters
 import SkillsSidebar from "../organisms/Side_skill";
@@ -14,6 +14,11 @@ import SobreSidebar from "../organisms/Side_about";
 import ExperienceCard from "../organisms/Side_experience";
 import EducationCard from "../organisms/Side_education";
 import LoginPage from "../organisms/Side_LoginPage";
+import RegisterPage from "../organisms/Side_Register";
+import StatisticsPage from "../organisms/Side_statisticsPage";
+
+//test
+import ApiService from "../../utils/PostManager";
 
 /** Docs
  * @startDate 21/12/25
@@ -31,6 +36,8 @@ export default function Home() {
     useEffect(() => {
         const page = new URLSearchParams(window.location.search);
         setRenderedPage(page.get("page"));
+
+        ApiService.Get()
     }, []);
 
     useEffect(() => {
@@ -52,7 +59,9 @@ export default function Home() {
             case "formation": return <EducationCard darkMode={data.darkMode} />;
             case "skills": return <SkillsSidebar darkMode={data.darkMode} />;
             case "projects": return <ProjectsSidebar darkMode={data.darkMode} />;
-            case "login": return <LoginPage darkMode={data.darkMode} />
+            case "login": return <LoginPage darkMode={data.darkMode} />;
+            case "register": return <RegisterPage darkMode={data.darkMode} />;
+            case "statistics": return <StatisticsPage darkMode={data.darkMode} />
         }
     };
 
