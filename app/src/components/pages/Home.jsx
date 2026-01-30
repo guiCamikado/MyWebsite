@@ -30,19 +30,39 @@ export default function Home() {
     const [renderedPage, setRenderedPage] = useState("");
     const [data, setData] = useState(JSON.parse(localStorage.getItem("GuisProfile")) || { sideMenuOpen: true, darkMode: true });
 
-    // WIP REATIVAR !! Obtem IP do usuário e o envia para back-end
-    // useEffect(() => {
-    //     const getIp = async () => {
-    //         try {
-    //             const data = await ApiService.Get("https://api.ipify.org?format=json");
-    //             ApiService.Post("/api/ipManager/register", { ipAddress: data.ip })
-    //         } catch (error) {
-    //             console.error(error);
-    //         }
-    //     };
+    // Obtem endereço de IP conectado ao servidor
+    useEffect(() => {
+        const run = async () => {
+            // Função para obter IP e enviar para o Back-end
+            const getIp = async () => {
+                try {
+                    const ipData = await ApiService.Get("https://api.ipify.org?format=json");
+                    await ApiService.Post("/api/ipManager/register", { ipAddress: ipData.ip });
+                } catch (error) {
+                    console.error(error);
+                }
+            };
 
-    //     getIp();
-    // }, []);
+            // Diferença entre o ultimo login em milisegundos
+            const differenceBetweenLastLogin = (new Date().getTime() - new Date(data.recentConnection).getTime());
+            const duasHoras = (1000 * 60 * 60 * 2)
+            
+            console.log(differenceBetweenLastLogin);
+            if (!data.recentConnection || (differenceBetweenLastLogin > duasHoras || isNaN(differenceBetweenLastLogin))) {
+                console.log("Executou");
+                
+                // Define recentConnection dentro do local Storage
+                const firstLoginToday = { name: "recentConnection", value: new Date().toISOString() };
+                await FormDataManager.handleEventInput({ target: firstLoginToday }, data, setData).then((result) => {
+                    localStorage.setItem("GuisProfile", JSON.stringify(result));
+                });
+                getIp();
+            }
+
+        };
+
+        run();
+    }, []); // só roda uma vez ao montar
 
     // Obtem URL para renderizar paginas de acordo com a constante renderContent 
     useEffect(() => {

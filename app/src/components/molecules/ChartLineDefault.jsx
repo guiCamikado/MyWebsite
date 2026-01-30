@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts"
 
+import ArrayManipulators from "../../utils/ArrayManipulators";
+
 function ChartLineDefault({ darkMode, data }) {
 
   const [categories, setCategories] = useState(["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]) // Fazer meses aqui
+
   const [newUsers, setNewUsers] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  // Cada item representa 1 mês
   const [users, setUsers] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  // Cada item representa 1 mês
   const [series, setSeries] = useState(
@@ -21,11 +24,12 @@ function ChartLineDefault({ darkMode, data }) {
         setNewUsers(prevArray => {
           const newArray = [...prevArray]; // copia do array
           newArray[monthIndex] += 1;       // Incrementa o mês correspondente
-          return newArray;                  // Retorna o novo array
+          return ArrayManipulators.trimTrailingZeros(newArray);// Retorna o novo array
         });
       }
     }
   }, [data])
+
   useEffect(() => { // Contabiliza total de Acessos
     if (typeof (data) === "object" && data[1]) {
       for (let i = 0; i < data[1].length; i++) {
@@ -34,7 +38,8 @@ function ChartLineDefault({ darkMode, data }) {
         setUsers(prevArray => {
           const newArray = [...prevArray]; // copia do array
           newArray[monthIndex] += 1;       // Incrementa o mês correspondente
-          return newArray;                  // Retorna o novo array
+          return ArrayManipulators.trimTrailingZeros(newArray); // Retorna o novo array
+
         });
       }
     }
@@ -168,3 +173,4 @@ function ChartLineDefault({ darkMode, data }) {
 }
 
 export default ChartLineDefault
+
