@@ -11,9 +11,9 @@
 - #C0B0A4 -> texto secundário 
 
 ### Padrão Para botões de navegação hover:
-- #807C80
-- #FFFFFF
-- #DD01E6
+- #807C80 → fundo padrão
+- #FFFFFF → texto padrão
+- #DD01E6 → hover / destaque
 
 ### Para botões de alertas
 - #00F028

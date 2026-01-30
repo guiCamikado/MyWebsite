@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { Menu, Home, SunMoon } from "lucide-react"
-import SideBarCluster from "../molecules/SidebarCluster"
+import { Menu, Home, SunMoon, CircleUser } from "lucide-react"
+import SideBarCluster from "@/components/molecules/SidebarCluster"
 /** Docs
 * @startDate 21/12/25
 * @lastUpdate 21/12/25 
@@ -58,24 +58,23 @@ function Sidebar({ data, handleEventInput, element }) {
 
                     {/* Header */}
                     <div className={`flex justify-between p-4 transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`}>
-                        {/* Grupo de botões*/}
                         <div className="flex items-center gap-3">
-                            {isActive ? (<>
-                                <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                <Home size={32} onClick={() => window.location.href = "/MyWebsite/?page=about"} className={`${ButtonStyle}`} />
 
-                                <div className="absolute right-4 top-4">
-                                    <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
-                                </div>
-
-                            </>) : (<>
+                            {isActive ? (
+                                <>
+                                    <button type="button" onClick={() => setDarkMode(!darkMode)} className={ButtonStyle} aria-label="Alternar modo escuro">    <SunMoon size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=about")} className={ButtonStyle} aria-label="Ir para Sobre">    <Home size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=login")} className={ButtonStyle} aria-label="Ir para Login">    <CircleUser size={32} /></button>
+                                    <button type="button" onClick={() => setIsActive(!isActive)} className={`${ButtonStyle} absolute right-4 top-4`} aria-label="Abrir/Fechar menu">    <Menu size={32} /></button>
+                                </>
+                            ) : (
                                 <div className="grid grid-cols-1 gap-4">
-                                    <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
-                                    <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                    <Home size={32} onClick={() => window.location.href = "/?page=about"} className={`${ButtonStyle}`} />
+                                    <button type="button" onClick={() => setIsActive(!isActive)} className={ButtonStyle} aria-label="Abrir menu">    <Menu size={32} /></button>
+                                    <button type="button" onClick={() => setDarkMode(!darkMode)} className={ButtonStyle} aria-label="Alternar modo escuro">    <SunMoon size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=about")} className={ButtonStyle} aria-label="Ir para Sobre">    <Home size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=login")} className={ButtonStyle} aria-label="Ir para Login">    <CircleUser size={32} /></button>
                                 </div>
-                            </>)}
-
+                            )}
                         </div>
                     </div>
 
@@ -84,15 +83,16 @@ function Sidebar({ data, handleEventInput, element }) {
                     {isActive && (<>
                         <div
                             className={`
-                        flex flex-col gap-2 px-4
-                        overflow-hidden
-                        transition-all duration-500 ease-in-out
-                        ${isActive
+                                    flex flex-col gap-2 px-4
+                                    overflow-hidden
+                                    transition-all duration-500 ease-in-out
+                                ${isActive
                                     ? "opacity-100 translate-y-0 delay-300"
                                     : "opacity-0 translate-y-2 max-h-0 pointer-events-none"
                                 }
                         `}
                         >
+                            <hr className="border-white/20" />
                             <SideBarCluster
                                 darkMode={darkMode}
                                 ClusterTitle="Perfil"
@@ -107,6 +107,19 @@ function Sidebar({ data, handleEventInput, element }) {
                                         { text: "Projetos", link: "?page=projects" },
                                     ]
                                 } />
+
+                            {/* WIP aqui é necessário verificar se o usuário está ou não conectado, tendo isso de informação mostra-se ou não esse sideBarCluester */}
+                            <SideBarCluster
+                                darkMode={darkMode}
+                                ClusterTitle="Dados"
+                                onItemClick={closeMenuOnMobile}
+                                ClusterData={
+
+                                    [
+                                        { text: "Estatisticas", link: "?page=statistics" },
+                                    ]
+                                } />
+
 
                         </div>
                     </>
