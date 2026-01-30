@@ -41,7 +41,12 @@ public static class UsersRoutes {
         return Results.Ok("Usuário inserido com sucesso!");
     }
 
-    private static async Task<IResult> ReturnJwtToken(_Models.LoginRequest login, _Data.DbConnectionFactory db, IConfiguration config, Security.JwtTokenService jwtTokenService) {
+    private static async Task<IResult> ReturnJwtToken(
+        _Models.LoginRequest login,
+        _Data.DbConnectionFactory db,
+        IConfiguration config,
+        Security.JwtTokenService jwtTokenService
+        ) {
         await using var connection = db.Create();
         await connection.OpenAsync();
 

@@ -1,13 +1,37 @@
+import { useEffect, useState } from "react";
 import { BigCardHolder } from "../atoms/CardHolders";
 import ChartLineDefault from "../molecules/ChartLineDefault";
 
+import ApiService from "../../utils/PostManager";
+
 export default function StatisticsPage({ darkMode }) {
 
-	// WIP Usar API para pegar o endereço IP:
-	// https://api.ipify.org?format=json
+	const [connectionChartData, setConnectionChartData] = useState("");
 
-	// Após pegar o endereço IP será necessário Hashear o mesmo.
-	// Também será preciso armazenar a sessão e a página que está sendo acessada isto é para o código não ficar enviando toda vez que atualiza a página e para armazenar quais páginas foram acessadas 
+
+	const getIps = async () => {
+		try {
+			const data = await ApiService.InternalGet("/api/ipManager/getIpTable");
+			const newUsers = []
+			const allUsers = []
+			for (let i = 0; i < data.length; i++) {
+				if (data[i].isFirst) {
+					newUsers.push(data[i])
+				}
+				allUsers.push(data[i])
+			}
+			
+			setConnectionChartData([newUsers, allUsers])
+			if (!data || data.length === 0) return;
+		} catch (error) {
+			console.error(error);
+			setConnectionChartData([], [])
+		}
+	};
+
+	useEffect(() => {
+		getIps()
+	}, [])
 
 	const items = [
 		<BigCardHolder
@@ -18,19 +42,17 @@ export default function StatisticsPage({ darkMode }) {
 				<>
 					<div className="grid grid-cols-4">
 						<div className="col-span-3">
-							<ChartLineDefault darkMode={darkMode} />
+							<ChartLineDefault data={connectionChartData} darkMode={darkMode} />
 						</div>
 
 						<div className="pl-4">
-							<p>
-								<p className="pt-2">
-									Aqui se tem o numero de acessos ao site.
-								</p>
+							<p className="pt-2">
+								Aqui se tem o numero de acessos ao site.
+							</p>
 
-								<p className="pt-2">
-									O calculo é feito utilizando uma API que obtem os endereços de IP que se conectam ao site, o mesmo envia para um banco de dados
-									que no momento em que são obtidos novamente são rasheados para manter a privacidade do usuário não mostrando o endereço armazenado no banco de dados quando o mesmo é retornado.
-								</p>
+							<p className="pt-2">
+								O calculo é feito utilizando uma API que obtem os endereços de IP que se conectam ao site, o mesmo envia para um banco de dados
+								que no momento em que são obtidos novamente são rasheados para manter a privacidade do usuário não mostrando o endereço armazenado no banco de dados quando o mesmo é retornado.
 							</p>
 
 							<div className="pl-1 pt-8 flex flex-col gap-3">

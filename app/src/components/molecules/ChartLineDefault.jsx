@@ -1,7 +1,57 @@
+import { useEffect, useState } from "react";
 import Chart from "react-apexcharts"
 
-function ChartLineDefault({ darkMode, data, categories }) {
-  // WIP fazer temas escuro claro e esticar na largura da tela
+function ChartLineDefault({ darkMode, data }) {
+
+  const [categories, setCategories] = useState(["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]) // Fazer meses aqui
+  const [newUsers, setNewUsers] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  // Cada item representa 1 mês
+  const [users, setUsers] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  // Cada item representa 1 mês
+  const [series, setSeries] = useState(
+    [
+      { name: "Usuários Novos", data: [0] },
+      { name: "Acessos Totais", data: [0] },
+    ]
+  )
+
+  useEffect(() => { // Contabiliza Usuários Novos
+    if (typeof (data) === "object" && data[0]) {
+      for (let i = 0; i < data[0].length; i++) {
+        const monthIndex = new Date(data[0][i].time).getMonth();
+
+        setNewUsers(prevArray => {
+          const newArray = [...prevArray]; // copia do array
+          newArray[monthIndex] += 1;       // Incrementa o mês correspondente
+          return newArray;                  // Retorna o novo array
+        });
+      }
+    }
+  }, [data])
+  useEffect(() => { // Contabiliza total de Acessos
+    if (typeof (data) === "object" && data[1]) {
+      for (let i = 0; i < data[1].length; i++) {
+        const monthIndex = new Date(data[1][i].time).getMonth();
+
+        setUsers(prevArray => {
+          const newArray = [...prevArray]; // copia do array
+          newArray[monthIndex] += 1;       // Incrementa o mês correspondente
+          return newArray;                  // Retorna o novo array
+        });
+      }
+    }
+  }, [data])
+  useEffect(() => { // Atualiza gráfico
+    setSeries([
+      { name: "Usuários Novos", data: newUsers },
+      { name: "Acessos Totais", data: users },
+    ])
+  }, [users, newUsers])
+
+  // WIP criar função que:
+  // Caso valores a frente em uma array forem todos "0" excluir esses valores
+  // Se um numero maior for encontrado todos os valores anteriores devem ser mantidos.
+  // Uma vez feita utilizar essa fução nas arrays users e newUsers
+
+
   const baseOptions = {
     chart: {
       id: "line-chart",
@@ -92,7 +142,7 @@ function ChartLineDefault({ darkMode, data, categories }) {
         show: false // Escondendo legenda já que só tem uma série
       }
     },
-    series: [
+    series: series ?? [
       {
         name: "Linha A",
         data: [1, 9, 0],

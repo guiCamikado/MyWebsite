@@ -74,7 +74,7 @@ export default function AboutSidebar({ darkMode }) {
                                 </div>
                             </div>
 
-                            <div class="hidden md:flex h-70 w-px bg-gray-400"></div>
+                            <div className="hidden md:flex h-70 w-px bg-gray-400"></div>
 
                             <div className="flex flex-col w-[40%]">
                                 <p className="font-semibold text-lg "></p>
@@ -82,7 +82,7 @@ export default function AboutSidebar({ darkMode }) {
                                 <div className="hidden md:flex flex-wrap gap-2 text-center">
 
                                     {["Java", "Python", "JavaScript", "C#", "SQL", "Blender", "Unity", "Office 365", "Wireshark", "Sleuth Kit", "GitHub", "Scrum", "Flask", "Spring Boot", "React", "MUI", "Tailwind CSS", "ASP Classic", "Windows", "Linux", "Bash", "Shell", "JSON", "XML", "Markdown"].map((tech) => (
-                                        <span
+                                        <span key={tech}
                                             className={`
                                             inline-block px-3 py-2 pr-8 text-sm rounded-full 
                                             transition-transform duration-300 hover:scale-110 hover:border

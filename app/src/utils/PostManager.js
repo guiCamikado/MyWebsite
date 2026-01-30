@@ -1,25 +1,40 @@
 import axios from "axios";
-// https://api.ipify.org?format=json
-
 
 class ApiService {
-    static Get(apiLink = "https://api.ipify.org?format=json") {
+    static defaultIp = "http://localhost:5247"
 
-        axios.get(apiLink)
-            .then(response => {
-                console.log("IP:", response.data.ip);
-            })
-            .catch(error => {
-                console.error("Erro no GET:", error);
-            });
+    static async Get(apiLink) {
+        try {
+            const response = await axios.get(apiLink);
+            return response.data;
+        } catch (error) {
+            console.error("Erro GET:", error);
+            throw error;
+        }
     }
 
-    static Post(postLink = "https://api.ipify.org?format=json") {
+    static async Post(url, body) {
+        try {
+            const response = await axios.post(this.defaultIp + url, body, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            return response.data;
+        } catch (err) {
+            console.error("Erro POST:", err);
+            throw err;
+        }
+    }
 
-        axios.post(response => {
-            console.log("Envio:" + response);
-
-        })
+    static async InternalGet(apiLink) {
+        try {
+            const response = await axios.get(this.defaultIp + apiLink);
+            return response.data;
+        } catch (error) {
+            console.error("Erro GET:", error);
+            throw error;
+        }
     }
 }
 

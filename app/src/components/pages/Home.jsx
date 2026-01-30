@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 
 
 import FormDataManager from "../../utils/FormDataManager";
-
 import Sidebar from "../templates/Sidebar";
-import CardHolder from "../atoms/CardHolders";
 
 // Clusters
 import SkillsSidebar from "../organisms/Side_skill";
@@ -15,9 +12,9 @@ import ExperienceCard from "../organisms/Side_experience";
 import EducationCard from "../organisms/Side_education";
 import LoginPage from "../organisms/Side_LoginPage";
 import RegisterPage from "../organisms/Side_Register";
-import StatisticsPage from "../organisms/Side_statisticsPage";
+import StatisticsPage from "../organisms/Side_statistics";
 
-//test
+// Api Managers
 import ApiService from "../../utils/PostManager";
 
 /** Docs
@@ -33,13 +30,27 @@ export default function Home() {
     const [renderedPage, setRenderedPage] = useState("");
     const [data, setData] = useState(JSON.parse(localStorage.getItem("GuisProfile")) || { sideMenuOpen: true, darkMode: true });
 
+    // WIP REATIVAR !! Obtem IP do usuário e o envia para back-end
+    // useEffect(() => {
+    //     const getIp = async () => {
+    //         try {
+    //             const data = await ApiService.Get("https://api.ipify.org?format=json");
+    //             ApiService.Post("/api/ipManager/register", { ipAddress: data.ip })
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+
+    //     getIp();
+    // }, []);
+
+    // Obtem URL para renderizar paginas de acordo com a constante renderContent 
     useEffect(() => {
         const page = new URLSearchParams(window.location.search);
         setRenderedPage(page.get("page"));
-
-        ApiService.Get()
     }, []);
 
+    // Botão Darkmode
     useEffect(() => {
         const html = document.documentElement;
         if (data.darkMode) { html.classList.add("dark"); }

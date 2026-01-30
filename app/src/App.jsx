@@ -4,7 +4,6 @@ import Home from './components/pages/Home'
 
 //Test
 import ChartLineDefault from './components/molecules/ChartLineDefault'
-import StatisticsPage from './components/organisms/Side_statisticsPage'
 
 
 
@@ -15,7 +14,6 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/test" element={<StatisticsPage />} />
       </Routes>
     </HashRouter>
   )

@@ -58,26 +58,23 @@ function Sidebar({ data, handleEventInput, element }) {
 
                     {/* Header */}
                     <div className={`flex justify-between p-4 transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`}>
-                        {/* Grupo de botões*/}
                         <div className="flex items-center gap-3">
-                            {isActive ? (<>
-                                <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                <Home size={32} onClick={() => window.location.href = "?page=about"} className={`${ButtonStyle}`} />
-                                <CircleUser size={32} onClick={() => window.location.href = "?page=login"} className={`${ButtonStyle}`} />
 
-                                <div className="absolute right-4 top-4">
-                                    <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
-                                </div>
-
-                            </>) : (<>
+                            {isActive ? (
+                                <>
+                                    <button type="button" onClick={() => setDarkMode(!darkMode)} className={ButtonStyle} aria-label="Alternar modo escuro">    <SunMoon size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=about")} className={ButtonStyle} aria-label="Ir para Sobre">    <Home size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=login")} className={ButtonStyle} aria-label="Ir para Login">    <CircleUser size={32} /></button>
+                                    <button type="button" onClick={() => setIsActive(!isActive)} className={`${ButtonStyle} absolute right-4 top-4`} aria-label="Abrir/Fechar menu">    <Menu size={32} /></button>
+                                </>
+                            ) : (
                                 <div className="grid grid-cols-1 gap-4">
-                                    <Menu size={32} onClick={() => setIsActive(!isActive)} className={`${ButtonStyle}`} />
-                                    <SunMoon size={32} onClick={() => { setDarkMode(!darkMode); }} className={`${ButtonStyle}`} />
-                                    <Home size={32} onClick={() => window.location.href = "?page=about"} className={`${ButtonStyle}`} />
-                                    <CircleUser size={32} onClick={() => window.location.href = "?page=login"} className={`${ButtonStyle}`} />
+                                    <button type="button" onClick={() => setIsActive(!isActive)} className={ButtonStyle} aria-label="Abrir menu">    <Menu size={32} /></button>
+                                    <button type="button" onClick={() => setDarkMode(!darkMode)} className={ButtonStyle} aria-label="Alternar modo escuro">    <SunMoon size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=about")} className={ButtonStyle} aria-label="Ir para Sobre">    <Home size={32} /></button>
+                                    <button type="button" onClick={() => (window.location.href = "?page=login")} className={ButtonStyle} aria-label="Ir para Login">    <CircleUser size={32} /></button>
                                 </div>
-                            </>)}
-
+                            )}
                         </div>
                     </div>
 
