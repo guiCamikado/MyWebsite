@@ -43,15 +43,15 @@ export function BigCardHolder({ title, element, darkMode }) {
 	return (
 		<>
 			<div className={`w-[95%] ${darkMode
-				? "text-[#FFE3C8] bg-[#00000044] md:border-2 border-[#201F20] hover:border-[#DD01E6]"
-				: "text-[#000000] bg-[#DEDCDE] md:border-2 border-[#DEDCDE] hover:border-[#FFFF20]"}
-				 hover:scale-105 transition-transform duration-600 hover:text-[#DD01E6] transform-gpu hover: rounded-4xl m-10`}>
+				? "text-[#FFE3C8] bg-[#00000044] md:border-2 border-[#201F20]"
+				: "text-[#000000] bg-[#DEDCDE] md:border-2 border-[#DEDCDE]"}
+				 hover:scale-105 transition-transform duration-600 transform-gpu hover: rounded-4xl m-10`}>
 
 
-				<div className={`w-full hover:text-[#DD01E6]`}>
+				<div className={`w-full ${darkMode ? "hover:text-[#DD01E6]" : "hover:text-[#FFFF20]"}`}>
 
 					{title && (
-						<div className={`text-2xl font-semiboldpx-5 py-4 text-center`}>
+						<div className={`text-2xl font-semiboldpx-5 py-4 text-center `}>
 							{title}
 						</div>
 					)}
@@ -59,7 +59,7 @@ export function BigCardHolder({ title, element, darkMode }) {
 					<div className={`w-full`}>
 						<div className="px-4 py-3 w-full h-full">
 							{element ? (
-								<div className="w-full h-full flex items-center justify-center">
+								<div className={`text-center p-8 ${darkMode ? "text-[#FFE3C8] bg-[#201F20]" : "text-[#000000] bg-[#DEDCDE]"}`}>
 									{element}
 								</div>
 							) : (
