@@ -27,7 +27,7 @@ export default function EducationSidebar({ darkMode, itensData }) {
         institution: "Unicep",
         formation: "Análise e Desenvolvimento de Sistemas",
         startDate: "Jan 2023",
-        endDate: "Dez 2025",
+        endDate: "Jun 2026",
         description:
             <>
                 <section className="space-y-4 text-sm leading-relaxed">

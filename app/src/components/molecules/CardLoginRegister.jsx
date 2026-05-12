@@ -10,8 +10,8 @@ export default function CardLoginRegister({ darkMode, elements, title, subtitle 
             <div className={inputStyle}>
 
                 <div className="content-center center">
-                    <p className="text-4xl underline">{title ?? "Definir um Titulo"}</p>
-                    <p className="pt-3">{subtitle ?? "Definir um Subtitulo"}</p>
+                    <div className="text-4xl underline">{title ?? "Definir um Titulo"}</div>
+                    <div className="pt-3">{subtitle ?? "Definir um Subtitulo"}</div>
                 </div>
                 {elements}
                 <DefaultButton text={"Login"} link={"test"} darkMode={darkMode} />

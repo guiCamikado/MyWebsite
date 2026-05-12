@@ -3,6 +3,7 @@ import javaScript_icon from "../../../assets/images/Logos/languageIcons/javascri
 import python_icon from "../../../assets/images/Logos/languageIcons/python_icon.svg"
 import Csharp_icon from "../../../assets/images/Logos/languageIcons/Csharp_logo.svg.png"
 import sql_icon from "../../../assets/images/Logos/languageIcons/sql_icon.png"
+import cpp_icon from "../../../assets/images/Logos/languageIcons/cpp_icon.png"
 
 import SkillDescriptionCard from "../../atoms/SkillDescriptionCard"
 import CardHolderChild from "../../atoms/CardHolderChild"
@@ -45,6 +46,12 @@ export default function ClusterLinguagens({ darkMode }) {
             title: "SQL",
             subtitle: "Linguagem de Query",
             text: "SEQUEL (Structured English Query Language) são um conjunto de dialetos de expressões regulares e de emparelhamento, queries recursivas e gatilhos criadas com o objetivo de gerenciar dados relacionais em um sistema de gerenciamento de banco de dados."
+        }, {
+            icon: cpp_icon,
+            icon_alt_text: "C++ Icon",
+            title: "C++",
+            subtitle: "Linguagem de programação",
+            text: "linguagem de programação compilada multi-paradigma orientada a objetos de baixo nivel. Se destaca pela velocidade extremamente rápida e um tempo de compilação irritante quando comparado com a linguagem C."
         }
     ]
 

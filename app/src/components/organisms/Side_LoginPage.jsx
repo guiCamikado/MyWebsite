@@ -30,7 +30,7 @@ export default function LoginPage({ darkMode }) {
                         darkMode={darkMode}
                         elements={
                             <>
-                                <p className="pt-20"></p>
+                                <p className="pt-10"></p>
                                 <InputCamp darkmode={darkMode} placeholder={"email@example.com"} icon={<Mail />} />
                                 <InputCamp darkmode={darkMode} placeholder={"Password"} type={"password"} icon={<Lock />} />
                                 <p className="pt-2"></p>
