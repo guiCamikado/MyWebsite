@@ -1,138 +1,196 @@
-import { useEffect, useState } from "react"
-import { Menu, Home, SunMoon, CircleUser } from "lucide-react"
-import SideBarCluster from "@/components/molecules/SidebarCluster"
+import { useEffect, useState } from "react";
+import { Menu, Home, SunMoon, CircleUser } from "lucide-react";
+import SideBarCluster from "@/components/molecules/SidebarCluster";
 /** Docs
-* @startDate 21/12/25
-* @lastUpdate 21/12/25 
-* 
-* @use
-*   1. Menu de navegação intuitiva expansivel com botões para futuros widgets de customização
-*/
+ * @startDate 21/12/25
+ * @lastUpdate 21/12/25
+ *
+ * @use
+ *   1. Menu de navegação intuitiva expansivel com botões para futuros widgets de customização
+ */
 function Sidebar({ data, handleEventInput, element }) {
-    // WIP fazer com que a sidebar ocupe toda a tela se ativa && em mobile 
-    const [isActive, setIsActive] = useState(data.sideMenuOpen || "")
-    const [darkMode, setDarkMode] = useState(data.darkMode || "")
+  // WIP fazer com que a sidebar ocupe toda a tela se ativa && em mobile
+  const [isActive, setIsActive] = useState(data.sideMenuOpen || "");
+  const [darkMode, setDarkMode] = useState(data.darkMode || "");
 
-    // Controls DarkMode
-    useEffect(() => {
-        const darkmodeData = {
-            target: {
-                name: 'darkMode',
-                value: darkMode
-            }
-        }
-        handleEventInput(darkmodeData)
-    }, [darkMode])
+  // Controls DarkMode
+  useEffect(() => {
+    const darkmodeData = {
+      target: {
+        name: "darkMode",
+        value: darkMode,
+      },
+    };
+    handleEventInput(darkmodeData);
+  }, [darkMode]);
 
-    // Controls Menu State
-    useEffect(() => {
-        const isMenuOpenData = {
-            target: {
-                name: 'sideMenuOpen',
-                value: isActive
-            }
-        }
-        handleEventInput(isMenuOpenData)
-    }, [isActive])
+  // Controls Menu State
+  useEffect(() => {
+    const isMenuOpenData = {
+      target: {
+        name: "sideMenuOpen",
+        value: isActive,
+      },
+    };
+    handleEventInput(isMenuOpenData);
+  }, [isActive]);
 
-    // Fecha caso Mobile
-    const closeMenuOnMobile = () => {
-        if (window.innerWidth < 768) {
-            setIsActive(false)
-        }
+  // Fecha caso Mobile
+  const closeMenuOnMobile = () => {
+    if (window.innerWidth < 768) {
+      setIsActive(false);
     }
-    const ButtonStyle = darkMode
-        ? "rounded-xl text-[#FFE3C8] bg-[#00000044] p-1 cursor-pointer transition-all duration-200 hover:text-[#DD01E6] hover:scale-105"
-        : "rounded-xl bg-black/5 p-1 cursor-pointer transition-all duration-300 hover:text-[#FFEF20] hover:bg-black/10 hover:scale-105 text-[#000000]";
+  };
+  const ButtonStyle = darkMode
+    ? "rounded-xl text-[#FFE3C8] bg-[#00000044] p-1 cursor-pointer transition-all duration-200 hover:text-[#DD01E6] hover:scale-105"
+    : "rounded-xl bg-black/5 p-1 cursor-pointer transition-all duration-300 hover:text-[#FFEF20] hover:bg-black/10 hover:scale-105 text-[#000000]";
 
-    return (
-        <>
-            <div className="flex h-screen overflow-hidden">
+  return (
+    <>
+      <div className="flex h-screen overflow-hidden">
+        <aside
+          className={
+            darkMode
+              ? `min-h-screen sticky top-0 bg-black text-[#FFE3C8] transition-all duration-300 ease-in-out ${isActive ? "w-full md:w-64" : "w-16"}`
+              : `min-h-screen sticky top-0 bg-[#D4D3D4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-full md:w-64" : "w-16"}`
+          }
+        >
+          {/* Header */}
+          <div
+            className={`flex justify-between p-4 transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`}
+          >
+            <div className="flex items-center gap-3">
+              {isActive ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setDarkMode(!darkMode)}
+                    className={ButtonStyle}
+                    aria-label="Alternar modo escuro"
+                  >
+                    {" "}
+                    <SunMoon size={32} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => (window.location.href = "?page=about")}
+                    className={ButtonStyle}
+                    aria-label="Ir para Sobre"
+                  >
+                    {" "}
+                    <Home size={32} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => (window.location.href = "?page=login")}
+                    className={ButtonStyle}
+                    aria-label="Ir para Login"
+                  >
+                    {" "}
+                    <CircleUser size={32} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsActive(!isActive)}
+                    className={`${ButtonStyle} absolute right-4 top-4`}
+                    aria-label="Abrir/Fechar menu"
+                  >
+                    {" "}
+                    <Menu size={32} />
+                  </button>
+                </>
+              ) : (
+                <div className="grid grid-cols-1 gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setIsActive(!isActive)}
+                    className={ButtonStyle}
+                    aria-label="Abrir menu"
+                  >
+                    {" "}
+                    <Menu size={32} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDarkMode(!darkMode)}
+                    className={ButtonStyle}
+                    aria-label="Alternar modo escuro"
+                  >
+                    {" "}
+                    <SunMoon size={32} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => (window.location.href = "?page=about")}
+                    className={ButtonStyle}
+                    aria-label="Ir para Sobre"
+                  >
+                    {" "}
+                    <Home size={32} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => (window.location.href = "?page=login")}
+                    className={ButtonStyle}
+                    aria-label="Ir para Login"
+                  >
+                    {" "}
+                    <CircleUser size={32} />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
 
-                <aside
-                    className={darkMode
-                        ? `min-h-screen sticky top-0 bg-black text-[#FFE3C8] transition-all duration-300 ease-in-out ${isActive ? "w-full md:w-64" : "w-16"}`
-                        : `min-h-screen sticky top-0 bg-[#D4D3D4] text-black transition-all duration-300 ease-in-out ${isActive ? "w-full md:w-64" : "w-16"}`
-                    }
-                >
-
-                    {/* Header */}
-                    <div className={`flex justify-between p-4 transition-all duration-300 ease-in-out ${isActive ? "w-64" : "w-16"}`}>
-                        <div className="flex items-center gap-3">
-
-                            {isActive ? (
-                                <>
-                                    <button type="button" onClick={() => setDarkMode(!darkMode)} className={ButtonStyle} aria-label="Alternar modo escuro">    <SunMoon size={32} /></button>
-                                    <button type="button" onClick={() => (window.location.href = "?page=about")} className={ButtonStyle} aria-label="Ir para Sobre">    <Home size={32} /></button>
-                                    <button type="button" onClick={() => (window.location.href = "?page=login")} className={ButtonStyle} aria-label="Ir para Login">    <CircleUser size={32} /></button>
-                                    <button type="button" onClick={() => setIsActive(!isActive)} className={`${ButtonStyle} absolute right-4 top-4`} aria-label="Abrir/Fechar menu">    <Menu size={32} /></button>
-                                </>
-                            ) : (
-                                <div className="grid grid-cols-1 gap-4">
-                                    <button type="button" onClick={() => setIsActive(!isActive)} className={ButtonStyle} aria-label="Abrir menu">    <Menu size={32} /></button>
-                                    <button type="button" onClick={() => setDarkMode(!darkMode)} className={ButtonStyle} aria-label="Alternar modo escuro">    <SunMoon size={32} /></button>
-                                    <button type="button" onClick={() => (window.location.href = "?page=about")} className={ButtonStyle} aria-label="Ir para Sobre">    <Home size={32} /></button>
-                                    <button type="button" onClick={() => (window.location.href = "?page=login")} className={ButtonStyle} aria-label="Ir para Login">    <CircleUser size={32} /></button>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-
-                    {/* Conteúdo */}
-                    {isActive && (<>
-                        <div
-                            className={`
+          {/* Conteúdo */}
+          {isActive && (
+            <>
+              <div
+                className={`
                                     flex flex-col gap-2 px-4
                                     overflow-hidden
                                     transition-all duration-500 ease-in-out
-                                ${isActive
+                                ${
+                                  isActive
                                     ? "opacity-100 translate-y-0 delay-300"
                                     : "opacity-0 translate-y-2 max-h-0 pointer-events-none"
                                 }
                         `}
-                        >
-                            <hr className="border-white/20" />
-                            <SideBarCluster
-                                darkMode={darkMode}
-                                ClusterTitle="Perfil"
-                                onItemClick={closeMenuOnMobile}
-                                ClusterData={
+              >
+                <hr className="border-white/20" />
+                <SideBarCluster
+                  darkMode={darkMode}
+                  ClusterTitle="Perfil"
+                  onItemClick={closeMenuOnMobile}
+                  ClusterData={[
+                    { text: "Sobre", link: "?page=about" },
+                    { text: "Experiência", link: "?page=experience" },
+                    { text: "Formação Acadêmica", link: "?page=formation" },
+                    { text: "Habilidades", link: "?page=skills" },
+                    { text: "Projetos", link: "?page=projects" },
+                  ]}
+                />
 
-                                    [
-                                        { text: "Sobre", link: "?page=about" },
-                                        { text: "Experiência", link: "?page=experience" },
-                                        { text: "Formação Acadêmica", link: "?page=formation" },
-                                        { text: "Habilidades", link: "?page=skills" },
-                                        { text: "Projetos", link: "?page=projects" },
-                                    ]
-                                } />
+                {/* WIP aqui é necessário verificar se o usuário está ou não conectado, tendo isso de informação mostra-se ou não esse sideBarCluester */}
+                <SideBarCluster
+                  darkMode={darkMode}
+                  ClusterTitle="Dados"
+                  onItemClick={closeMenuOnMobile}
+                  ClusterData={[
+                    { text: "Estatisticas", link: "?page=statistics" },
+                  ]}
+                />
+              </div>
+            </>
+          )}
+        </aside>
 
-                            {/* WIP aqui é necessário verificar se o usuário está ou não conectado, tendo isso de informação mostra-se ou não esse sideBarCluester */}
-                            <SideBarCluster
-                                darkMode={darkMode}
-                                ClusterTitle="Dados"
-                                onItemClick={closeMenuOnMobile}
-                                ClusterData={
-
-                                    [
-                                        { text: "Estatisticas", link: "?page=statistics" },
-                                    ]
-                                } />
-
-
-                        </div>
-                    </>
-                    )}
-                </aside>
-
-                <div className={`${isActive ? "hidden" : ""} md:flex overflow-y-auto`}>
-                    {element}
-                </div>
-            </div>
-        </>
-
-    )
+        <div className={`${isActive ? "hidden" : ""} md:flex overflow-y-auto`}>
+          {element}
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default Sidebar
+export default Sidebar;

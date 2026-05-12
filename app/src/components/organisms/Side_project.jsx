@@ -17,6 +17,7 @@ import mui_icon from "../../assets/images/Logos/frameworkIcons/mui_logo.png"
 import react_icon from "../../assets/images/Logos/frameworkIcons/react_icon.svg"
 import tailwind_logo from "../../assets/images/Logos/frameworkIcons/tailwind_logo.svg"
 import javascript_icon from "../../assets/images/Logos/languageIcons/javascript_icon.png"
+import cs_icon from "../../assets/images/Logos/languageIcons/Csharp_Logo.svg.png"
 import typescript_icon from "../../assets/images/Logos/languageIcons/typescript-logo-512.svg"
 import C_icon from "../../assets/images/Logos/languageIcons/C_icon.png"
 import docker_icon from "../../assets/images/Logos/languageIcons/docker-mark-blue.svg"
@@ -104,7 +105,7 @@ export default function ProjectSidebar({ darkMode, content }) {
           </p>
         </>
       ),
-      technologies: [react_icon, tailwind_logo, javascript_icon, github_icon],
+      technologies: [react_icon, tailwind_logo, javascript_icon, github_icon, cs_icon, sql_icon],
       status: "progresso",
       link: "https://github.com/guiCamikado/MyWebsite.git"
     }]
